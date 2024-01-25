@@ -81,8 +81,8 @@ if __name__ == "__main__":
     texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
     print("\n 1) Aprendizaje\n 2) Tests\n 3) Juegos\n")
     texto_a_audio("Aprendizaje. Tests. Juegos.")
-    print("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
-    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
+    print("La opción Aprendizaje es donde podrás aprender todo con respecto a Programacion. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde tambien podrás poner en accion lo que aprendiste jugando.")
+    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a Programacion. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde tambien podrás poner en accion lo que aprendiste jugando.")
     print("¿Qué opción eliges?")
     texto_a_audio("¿Qué opción eliges?")
     time.sleep(0.5)
@@ -103,8 +103,8 @@ if __name__ == "__main__":
             print("Muy bien, empecemos entonces.")
             texto_a_audio("Muy bien, empecemos entonces.")
 
-            print("Antes de empezar quisiera hacer una introduccion a la estructura de computadores.")
-            texto_a_audio("Antes de empezar quisiera hacer una introduccion a la estructura de computadores.")
+            print("Antes de empezar quisiera hacer una introduccion a el tema conocido como Programación.")
+            texto_a_audio("Antes de empezar quisiera hacer una introduccion a el tema conocido como Programación.")
             time.sleep(0.5)
 
             class ImageWindow:
@@ -135,8 +135,6 @@ if __name__ == "__main__":
             if __name__ == "__main__":
                 main()
 
-            texto_a_audio(datos['aprendizaje'])
-            
             try:
                 img = Image.open("arquitectura.png")
             except:
@@ -147,10 +145,25 @@ if __name__ == "__main__":
             img2 = img.resize(size)
             img2.show()
 
-            print("Como se puede apreciar en la imagen, la estructura de un computador está dado por:")
-            texto_a_audio("Como se puede apreciar en la imagen, la estructura de un computador está dado por:")
-            print("\n1) Unidad central de proceso CPU\n 2) Memoria\n 3) Entrada / Salida\n 4) Sistemas de interconexion: Buses\n 5) Periféricos\n")
-            texto_a_audio("Unidad central de proceso CPU. Memoria. Entrada / Salida. Sistemas de interconexion: Buses. Periféricos.")
+            texto_a_audio(datos['definicion'])
+            texto_a_audio(datos['importancia'])
+            texto_a_audio(datos['razones'])
+
+            try:
+                img = Image.open("arquitectura.png")
+            except:
+                print("No se pudo cargar la imagen.")
+                sys.exit(1)
+            
+            size = (600,400)
+            img2 = img.resize(size)
+            img2.show()
+
+
+            print("Como se puede apreciar en la imagen, la Programación contiene varios aspectos y caracteristicas importantes, tales como:")
+            texto_a_audio("Como se puede apreciar en la imagen, la Programación contiene varios aspectos y caracteristicas importantes, tales como:")
+            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)")
+            texto_a_audio("Variables. Constantes. Tipos de datos. Operadores. Estructuras condicionales. Bucles. Funciones. Compiladores. Depuración. Algoritmos. Estructuras de datos. Programación Orientada a Objetos (POO).")
 
             #PREGUNTA AL USUARIO CON QUÉ PARTE DESEA EMPEZAR
             while(not salir):
