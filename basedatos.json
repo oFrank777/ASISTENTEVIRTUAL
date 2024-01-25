@@ -6,7 +6,7 @@
     "PE PREGUNTA 03": ["TERCERA PREGUNTA: ¿Qué es un algoritmo en terminos de pensamiento computacional?",
                        "1) Un patron de diseño visual 2) Un lenguaje de programacion 3) Una secuencia de pasos para resolver un problema 4) Una representacion grafica de datos"],
 
-    "bienvenida": ["Hola. Soy tu Asistente Virtual. Fui creada para instruirte todo respecto al hermoso mundo de la computación. Antes de empezar ¿Podrias decirme tu nombre?"],
+    "bienvenida": ["Hola. Soy tu Asistente Virtual. Fui creada para instruirte todo respecto al hermoso mundo de la programacion. Antes de empezar ¿Podrias decirme tu nombre?"],
 
     "definicion": ["La programación es el proceso de crear un conjunto detallado de instrucciones y algoritmos que guían a una computadora para realizar acciones específicas y solucionar problemas. Es decir, le indicamos a la máquina cómo ejecutar pasos en un orden determinado para lograr un objetivo."],
     "importancia": ["En la era digital actual, aprender las bases de la programación es absolutamente esencial por varias razones importantes:"],
@@ -34,13 +34,49 @@
     "bucles": "Los bucles permiten ejecutar repetidamente un bloque de código mientras se cumpla una condición. Los principales son for, mientras se cumpla un contador, y while, mientras se cumpla una expresión lógica. Se utilizan para iteraciones, leer arrays, lectura de archivos, iteraciones infinitas y más.",
 
     
-    "Funciones": "Bloques de código identificados con un nombre que se pueden reutilizar fácilmente.",
-    "POO": "paradigma basado en objetos que emulan entidades reales con propiedades y métodos.",
-    "Compiladores": "traducen lenguajes al código máquina entendible por los computadores.",
-    "Depuración": "técnicas para identificar errores, bugs y fallos lógicos en el código.",
-    "Algoritmos": "automatizan y resuelven problemas complejos de manera genérica y escalable.",
-    "Estructuras de datos": "arrays, listas, pilas, colas, hash tables para organizar datos."
+    "funciones": "Bloques de código identificados con un nombre que se pueden reutilizar fácilmente.",
 
+    "POO": "paradigma basado en objetos que emulan entidades reales con propiedades y métodos.",
+
+    "compiladores": "traducen lenguajes al código máquina entendible por los computadores.",
+
+    "depuración": "técnicas para identificar errores, bugs y fallos lógicos en el código.",
+
+    "algoritmos": "automatizan y resuelven problemas complejos de manera genérica y escalable.",
+
+    "estructuras_de_datos": {
+
+        "definicion": "Las estructuras de datos son formas específicas de organizar y almacenar datos en la memoria de un programa para acceder y modificar los elementos de manera eficiente.",
+    
+        "arrays": {
+            "descripcion": "Los arreglos o arrays son estructuras indexadas que permiten acceder a sus elementos mediante índices numéricos, comenzando generalmente desde cero. Permiten almacenar y recorrer colecciones de elementos del mismo tipo.",
+            "ventajas": "Acceso rápido a elementos específicos. Uso sencillo. Contigüidad en memoria. Muchas funciones integradas.",
+            "desventajas": "Tamaño fijo en algunos lenguajes. Costoso redimensionar. Ineficiente para inserciones/eliminaciones."
+        },
+    
+        "listas_enlazadas": {
+            "descripcion": "Las listas vinculadas almacenan secuencias de elementos no contiguos en memoria. Cada elemento tiene un puntero al siguiente, formando una cadena de nodos.",
+            "ventajas": "Tamaño dinámico. Fácil de expandir. Inserción y eliminación eficiente al principio.",
+            "desventajas": "Acceso secuencial. Mayor uso de memoria por los punteros. Recorrer todos los elementos es lento."
+        },
+    
+        "pilas": {
+            "descripcion": "Estructura LIFO (Last In First Out) donde el último elemento insertado se saca primero, como una pila de platos. Operaciones push y pop.",
+            "casos": "Rehacer/deshacer en editores. Historial de navegación web. Funciones recursivas."
+        },
+    
+        "colas": {
+            "descripcion": "Estructura FIFO (First In First Out) donde el primer elemento insertado se extrae primero, como una cola de personas. Operaciones enqueue y dequeue.", 
+            "casos": "Gestión de procesos e hilos. Colas de trabajos e impresión."
+        },
+    
+        "hash": {
+            "descripcion": "Estructura clave-valor que permite almacenar y acceder a pares mediante una función hash sobre la clave para calcular índices.",
+            "ventajas": "Rendimiento en búsqueda, inserción y eliminación constantes.",
+            "desventajas": "Colisiones entre claves mapeadas al mismo índice. Más uso de memoria."
+        }
+    
+    }
 }
 
 
