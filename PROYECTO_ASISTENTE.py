@@ -3,14 +3,11 @@ import pyttsx3
 import time
 import sys
 import tkinter as tk
+import threading
 import random
 import json
 from tkinter import messagebox
 from PIL import Image, ImageTk
-
-
-
-
 
 #CONVERTIR CADENAS DE TEXTO A AUDIO Y REPRODUCIRLAS
 def texto_a_audio(comando):
@@ -19,7 +16,7 @@ def texto_a_audio(comando):
     palabra.runAndWait()
 
 #CAPTURA AUDIO DESDE EL MICROFONO Y ANALIZA POSIBLES ERRORES
-def capturar_voz(reconocer, microfono, tiempo_ruido = 0.7):
+def capturar_voz(reconocer, microfono, tiempo_ruido = 1.0):
     if not isinstance(reconocer, sr.Recognizer):
         raise TypeError("'reconocer' no es de la instacia 'Recognizer'")
 
@@ -28,7 +25,6 @@ def capturar_voz(reconocer, microfono, tiempo_ruido = 0.7):
     
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration = tiempo_ruido)
-        print("Escuchando...")
         audio = reconocer.listen(fuente)
 
     respuesta = {
@@ -77,22 +73,14 @@ if __name__ == "__main__":
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
 
     texto_a_audio(datos['bienvenida'])
-    print("Cuentame tu nombre")
+    print("Di tu nombre: ")
     #LA FUNCION 'enviar_voz' RETORNA UNA CADENA DE TEXTO DEL AUDIO ENVIADO POR VOZ DEL USUARIO
-    nombre = enviar_voz()
-
+    nombre = 'jorge'
     print("Hola {}. Mucho gusto.".format(nombre))
-    texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    print("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
-    texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
-    print("\n 1) Aprendizaje\n 2) Tests\n 3) Juegos\n")
-    texto_a_audio("Aprendizaje. Tests. Juegos.")
-    print("La opción Aprendizaje es donde podrás aprender todo con respecto a Programacion. \nLa opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. \nY por último, la tercer opción, es Juegos, donde tambien podrás poner en accion lo que aprendiste jugando.")
-    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a Programacion. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde tambien podrás poner en accion lo que aprendiste jugando.")
+    
     print("¿Qué opción eliges?")
     texto_a_audio("¿Qué opción eliges?")
     time.sleep(0.5)
-    texto_a_audio("¿Aprendizaje? ¿Tests? ¿Juegos?")
     
     #SE USA LA FUNCION SLEEP DE LA LIBRERIA TIME PARA PAUSAR UN TIEMPO LA EJECUCION DEL PROGRAMA
     #PARA QUE LA INTERACCION SEA MAS NATURAL
@@ -100,7 +88,7 @@ if __name__ == "__main__":
     
     #PREGUNTA AL USUARIO QUE OPCION ELIGE
     while (1): 
-        respuesta = enviar_voz()
+        respuesta = "aprendizaje"
         print("Tu respuesta " + respuesta)
 
         if respuesta == "aprendizaje": 
@@ -114,58 +102,40 @@ if __name__ == "__main__":
             time.sleep(0.5)
 
             class ImageWindow:
-                def __init__(self, root, image_path):
+                def __init__(self, root, image_path, text):
                     self.root = root
-                    self.root.title("IMAGEN")
+                    self.root.title("Imagen")
                     
                     self.image = Image.open(image_path)
                     self.tk_image = ImageTk.PhotoImage(self.image)
                     
                     self.image_label = tk.Label(root, image=self.tk_image)
                     self.image_label.pack()
+                    self.text = text
                     
                 def update(self):
                     # Actualizar la ventana (puedes agregar lógica de actualización aquí si es necesario)
                     self.root.update_idletasks()
-                    self.root.after(100, self.update)  # Llama a la función de actualización cada 100 ms
+
+                    self.root.after(100, self.leer_informacion)
+
+                def leer_informacion(self):
+                # Crear un hilo para la lectura de la información
+                    thread = threading.Thread(target=texto_a_audio, args=(datos[self.text]))
+                    thread.start()
 
             def main():
                 root = tk.Tk()
-                image_path = "IMG/iaBackground.jpg"  # Ruta de la imagen que deseas abrir
+                image_path = "IMG/computador.jpg"  # Ruta de la imagen que deseas abrir
                 
-                image_window = ImageWindow(root, image_path)
+                image_window = ImageWindow(root, image_path, 'definicion')
                 image_window.update()  # Iniciar la función de actualización
-
+                
                 root.mainloop()
-
-            if __name__ == "__main__":
-                main()
-
-            try:
-                img = Image.open("IMG/introduccionProgramacion.png")
-            except:
-                print("No se pudo cargar la imagen.")
-                sys.exit(1)
             
-            size = (600,400)
-            img2 = img.resize(size)
-            img2.show()
-
-            texto_a_audio(datos['definicion'])
-            texto_a_audio(datos['importancia'])
-            texto_a_audio(datos['razones'])
-
-            try:
-                img = Image.open("IMG/arquitectura.png")
-            except:
-                print("No se pudo cargar la imagen.")
-                sys.exit(1)
+            #texto_a_audio(datos['importancia'])
+            #texto_a_audio(datos['razones'])
             
-            size = (600,400)
-            img2 = img.resize(size)
-            img2.show()
-
-
             print("Como se puede apreciar en la imagen, la Programación contiene varios aspectos y caracteristicas importantes, tales como:")
             texto_a_audio("Como se puede apreciar en la imagen, la Programación contiene varios aspectos y caracteristicas importantes, tales como:")
             print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
@@ -179,7 +149,7 @@ if __name__ == "__main__":
 
                 #COMPRUEBA QUE EL MENSAJE ENVIADO SEA VALIDO
                 while (1):
-                    respuesta = enviar_voz()
+                    respuesta = "estructura de datos"
                     print("Tu respuesta " + respuesta)
 
                     if respuesta == "variables":
@@ -253,7 +223,7 @@ if __name__ == "__main__":
                             #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
                             print("Elige la opcion que desees aprender: ")
                             texto_a_audio("Elige la opcion que desees aprender: ")
-                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
                             break
                         elif respuesta == "no gracias":
                             print("Oh. es una lástima. En ese caso nos veremos en otra ocasión ")
@@ -297,7 +267,7 @@ if __name__ == "__main__":
                             #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
                             print("Elige la opcion que desees aprender: ")
                             texto_a_audio("Elige la opcion que desees aprender: ")
-                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
                             break
                         elif respuesta == "no gracias":
                             print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
@@ -313,7 +283,7 @@ if __name__ == "__main__":
                             texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
                             print("Responde con:\n1) Esta bien.\n2) No gracias")
                     
-                    elif respuesta == "sistemas de interconexión buses":
+                    elif respuesta == "operadores":
 
                         try:
                             img = Image.open("buses.png")
@@ -325,9 +295,7 @@ if __name__ == "__main__":
                         img5 = img.resize(size)
                         img5.show()
 
-                        texto_a_audio(datos['sistemas de interconexión buses'])
-                        
-                        print("\n1) Bus de datos\n2) Bus de direcciones\n3) Bus de control\n4) Bus de alimentación")
+                        texto_a_audio(datos['operadores'])
                         
                         print("¿Quieres seguir aprendiendo?")
                         texto_a_audio("¿Quieres seguir aprendiendo?")
@@ -343,7 +311,7 @@ if __name__ == "__main__":
                             #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
                             print("Elige la opcion que desees aprender: ")
                             texto_a_audio("Elige la opcion que desees aprender: ")
-                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
                             break
                         elif respuesta == "no gracias":
                             print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
@@ -359,7 +327,7 @@ if __name__ == "__main__":
                             texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
                             print("Responde con:\n1) Esta bien.\n2) No gracias")
 
-                    elif respuesta == "periféricos":
+                    elif respuesta == "estructuras condicionales":
 
                         try:
                             img = Image.open("perifericos.jpg")
@@ -371,7 +339,7 @@ if __name__ == "__main__":
                         img6 = img.resize(size)
                         img6.show()
 
-                        texto_a_audio(datos['perifericos'])
+                        texto_a_audio(datos['estructuras_condicionales'])
 
                         print("¿Quieres seguir aprendiendo?")
                         texto_a_audio("¿Quieres seguir aprendiendo?")
@@ -387,7 +355,51 @@ if __name__ == "__main__":
                             #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
                             print("Elige la opcion que desees aprender: ")
                             texto_a_audio("Elige la opcion que desees aprender: ")
-                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
+                            break
+                        elif respuesta == "no gracias":
+                            print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            texto_a_audio("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            
+                            time.sleep(0.5)
+                            print("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            texto_a_audio("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            exit(0)
+                        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+                        else:
+                            print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            print("Responde con:\n1) Esta bien.\n2) No gracias")
+                        
+                    elif respuesta == "bucles":
+
+                        try:
+                            img = Image.open("perifericos.jpg")
+                        except:
+                            print("No se pudo cargar la imagen.")
+                            sys.exit(1)
+            
+                        size = (600,400)
+                        img6 = img.resize(size)
+                        img6.show()
+
+                        texto_a_audio(datos['bucles'])
+
+                        print("¿Quieres seguir aprendiendo?")
+                        texto_a_audio("¿Quieres seguir aprendiendo?")
+                        time.sleep(0.5)
+                        print("Responde con:\n1) Está bien\n2) No gracias")
+
+                        respuesta = enviar_voz()
+                        print("Tu respuesta " + respuesta)
+
+
+                        #COMPRUEbA QUE EL MENSAJE ENVIADO SEA VALIDO
+                        if respuesta == "está bien": 
+                            #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
+                            print("Elige la opcion que desees aprender: ")
+                            texto_a_audio("Elige la opcion que desees aprender: ")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
                             break
                         elif respuesta == "no gracias":
                             print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
@@ -403,15 +415,277 @@ if __name__ == "__main__":
                             texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
                             print("Responde con:\n1) Esta bien.\n2) No gracias")
 
+                    elif respuesta == "funciones":
+
+                        try:
+                            img = Image.open("perifericos.jpg")
+                        except:
+                            print("No se pudo cargar la imagen.")
+                            sys.exit(1)
+            
+                        size = (600,400)
+                        img6 = img.resize(size)
+                        img6.show()
+
+                        texto_a_audio(datos['funciones'])
+
+                        print("¿Quieres seguir aprendiendo?")
+                        texto_a_audio("¿Quieres seguir aprendiendo?")
+                        time.sleep(0.5)
+                        print("Responde con:\n1) Está bien\n2) No gracias")
+
+                        respuesta = enviar_voz()
+                        print("Tu respuesta " + respuesta)
+
+
+                        #COMPRUEbA QUE EL MENSAJE ENVIADO SEA VALIDO
+                        if respuesta == "está bien": 
+                            #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
+                            print("Elige la opcion que desees aprender: ")
+                            texto_a_audio("Elige la opcion que desees aprender: ")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
+                            break
+                        elif respuesta == "no gracias":
+                            print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            texto_a_audio("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            
+                            time.sleep(0.5)
+                            print("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            texto_a_audio("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            exit(0)
+                        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+                        else:
+                            print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            print("Responde con:\n1) Esta bien.\n2) No gracias")
+
+                    elif respuesta == "compiladores":
+
+                        try:
+                            img = Image.open("perifericos.jpg")
+                        except:
+                            print("No se pudo cargar la imagen.")
+                            sys.exit(1)
+            
+                        size = (600,400)
+                        img6 = img.resize(size)
+                        img6.show()
+
+                        texto_a_audio(datos['compiladores'])
+
+                        print("¿Quieres seguir aprendiendo?")
+                        texto_a_audio("¿Quieres seguir aprendiendo?")
+                        time.sleep(0.5)
+                        print("Responde con:\n1) Está bien\n2) No gracias")
+
+                        respuesta = enviar_voz()
+                        print("Tu respuesta " + respuesta)
+
+
+                        #COMPRUEbA QUE EL MENSAJE ENVIADO SEA VALIDO
+                        if respuesta == "está bien": 
+                            #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
+                            print("Elige la opcion que desees aprender: ")
+                            texto_a_audio("Elige la opcion que desees aprender: ")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
+                            break
+                        elif respuesta == "no gracias":
+                            print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            texto_a_audio("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            
+                            time.sleep(0.5)
+                            print("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            texto_a_audio("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            exit(0)
+                        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+                        else:
+                            print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            print("Responde con:\n1) Esta bien.\n2) No gracias")
+
+                    elif respuesta == "depuración":
+
+                        try:
+                            img = Image.open("perifericos.jpg")
+                        except:
+                            print("No se pudo cargar la imagen.")
+                            sys.exit(1)
+            
+                        size = (600,400)
+                        img6 = img.resize(size)
+                        img6.show()
+
+                        texto_a_audio(datos['depuración'])
+
+                        print("¿Quieres seguir aprendiendo?")
+                        texto_a_audio("¿Quieres seguir aprendiendo?")
+                        time.sleep(0.5)
+                        print("Responde con:\n1) Está bien\n2) No gracias")
+
+                        respuesta = enviar_voz()
+                        print("Tu respuesta " + respuesta)
+
+
+                        #COMPRUEbA QUE EL MENSAJE ENVIADO SEA VALIDO
+                        if respuesta == "está bien": 
+                            #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
+                            print("Elige la opcion que desees aprender: ")
+                            texto_a_audio("Elige la opcion que desees aprender: ")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
+                            break
+                        elif respuesta == "no gracias":
+                            print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            texto_a_audio("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            
+                            time.sleep(0.5)
+                            print("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            texto_a_audio("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            exit(0)
+                        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+                        else:
+                            print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            print("Responde con:\n1) Esta bien.\n2) No gracias")
+
+                    elif respuesta == "algoritmos":
+
+                        try:
+                            img = Image.open("perifericos.jpg")
+                        except:
+                            print("No se pudo cargar la imagen.")
+                            sys.exit(1)
+            
+                        size = (600,400)
+                        img6 = img.resize(size)
+                        img6.show()
+
+                        texto_a_audio(datos['algoritmos'])
+
+                        print("¿Quieres seguir aprendiendo?")
+                        texto_a_audio("¿Quieres seguir aprendiendo?")
+                        time.sleep(0.5)
+                        print("Responde con:\n1) Está bien\n2) No gracias")
+
+                        respuesta = enviar_voz()
+                        print("Tu respuesta " + respuesta)
+
+
+                        #COMPRUEbA QUE EL MENSAJE ENVIADO SEA VALIDO
+                        if respuesta == "está bien": 
+                            #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
+                            print("Elige la opcion que desees aprender: ")
+                            texto_a_audio("Elige la opcion que desees aprender: ")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
+                            break
+                        elif respuesta == "no gracias":
+                            print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            texto_a_audio("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            
+                            time.sleep(0.5)
+                            print("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            texto_a_audio("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            exit(0)
+                        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+                        else:
+                            print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            print("Responde con:\n1) Esta bien.\n2) No gracias")
+
+                    elif respuesta == "estructura de datos":
+                        def eda(opcion):
+                            texto_a_audio(opcion)
+                            texto_a_audio(datos[opcion]['descripcion'])
+                            texto_a_audio(datos[opcion]['ventajas'])
+                            texto_a_audio(datos[opcion]['desventajas'])
+                        
+                        try:
+                            img = Image.open("IMG/perifericos.jpg")
+                        except:
+                            print("No se pudo cargar la imagen.")
+                            sys.exit(1)
+            
+                        size = (600,400)
+                        img6 = img.resize(size)
+                        img6.show()
+
+                        texto_a_audio(datos['estructuras_de_datos']["definicion"])
+
+                        print("¿Deseas saber más sobre cada estructura?")
+                        texto_a_audio("¿Deseas saber más sobre cada estructura?")
+                        print("Responde con:\n1) Claro\n2) No gracias")
+
+                        respuesta = "claro"
+                        if respuesta == "claro":
+                            while respuesta == "claro":                            
+                                print("¿Qué estructura deseas indagar?")
+                                print("1) Arrays\n 2) Listas enlazadas\n 4) Pilas\n 4) Colas\n 5) Hash\n 6) Todas\n")
+
+                                respuesta = "listas enlazadas"
+                                print("listas")
+
+                                if respuesta == "arrays":
+                                    eda("arrays")
+
+                                elif respuesta == "listas enlazadas":
+                                    eda("listas_enlazadas")
+
+                                elif respuesta == "pilas":
+                                    eda("pilas")
+
+                                elif respuesta == "colas":
+                                    eda("colas")
+
+                                elif respuesta == "hash":
+                                    eda("hash")
+                                
+                                elif respuesta == "todas":
+                                    eda("arrays")
+                                    eda("listas_enlazadas")
+                                    eda("pilas")
+                                    eda("colas")
+                                    eda("hash")
+                                else:
+                                    texto_a_audio("No logre entenderte")
+                        
+                        print("¿Quieres seguir aprendiendo?")
+                        texto_a_audio("¿Quieres seguir aprendiendo?")
+                        time.sleep(0.5)
+                        print("Responde con:\n1) Está bien\n2) No gracias")
+
+                        respuesta = enviar_voz()
+                        print("Tu respuesta " + respuesta)
+              
+                        #COMPRUEbA QUE EL MENSAJE ENVIADO SEA VALIDO
+                        if respuesta == "está bien": 
+                            #ELEGIMOS CON QUÉ OPCIÓN SEGUIR
+                            print("Elige la opcion que desees aprender: ")
+                            texto_a_audio("Elige la opcion que desees aprender: ")
+                            print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
+                            break
+                        elif respuesta == "no gracias":
+                            print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            texto_a_audio("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
+                            
+                            time.sleep(0.5)
+                            print("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            texto_a_audio("Espero que hayas aprendido mucho sobre este tema. Hasta luego.")
+                            exit(0)
+                        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+                        else:
+                            print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                            print("Responde con:\n1) Esta bien.\n2) No gracias")
+
+
                     elif respuesta != "unidad central de proceso" or respuesta != "memoria" or respuesta != "entrada salida" or respuesta != "sistemas de interconexion buses" or respuesta != "perifericos":
                         print("Perdona, pero por el momento no tengo informacion sobre {}. Prueba con otra OPCION".format(respuesta))
                         texto_a_audio("Perdona, pero por el momento no tengo informacion sobre {}. Prueba con otra OPCION".format(respuesta))
-                        print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)")
+                        print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")
                     #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
                     else:
                         print(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
                         texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
-                        print("\n1) Unidad central de proceso CPU\n 2) Memoria\n 3) Entrada / Salida\n 4) Sistemas de interconexion: Buses\n 5) Periféricos\n")    
+                        print("\n1) Variables \n 2) Constantes\n 3) Tipos de datos\n 4) Operadores\n 5) Estructuras condicionales\n 6) Bucles\n 7) Funciones\n 8) Compiladores\n 9) Depuracion\n 10) Algoritmos\n 11) Estructuras de datos\n 12) Programacion Orientada a Objetos (POO)\n")    
 
             break
         elif respuesta == "test":

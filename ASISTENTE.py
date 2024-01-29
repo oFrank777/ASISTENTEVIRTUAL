@@ -11,9 +11,9 @@ from PIL import Image, ImageTk
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
 salir = False
+palabra = pyttsx3.init()
 
-def texto_a_audio(comando):
-    palabra = pyttsx3.init()
+def texto_a_audio(comando):    
     palabra.say(comando)
     palabra.runAndWait()
 
