@@ -40,13 +40,30 @@
             "desventajas": "Acceso secuencial. Mayor uso de memoria por los punteros. Recorrer todos los elementos es lento."
         },
         "pilas": {
-            "descripcion": "Estructura LIFO (Last In First Out) donde el ultimo elemento insertado se saca primero, como una pila de platos. Operaciones push y pop.",
-            "casos": "Rehacer/deshacer en editores. Historial de navegacion web. Funciones recursivas."
+            "descripcion": "Estructura LIFO que permite almacenar y acceder a elementos de forma ordenada, el último que entra sale primero como una pila de platos.",
+            "ventajas": [
+                "Implementación sencilla",
+                "Rápido acceso al último elemento insertado", 
+                "Útil para deshacer/rehacer cambios"
+            ],
+            "desventajas": [
+               "Solo se puede acceder al último elemento insertado",
+               "No es posible acceder a elementos arbitrarios o al principio de la pila"  
+            ]
         },
+      
         "colas": {
-            "descripcion": "Estructura FIFO (First In First Out) donde el primer elemento insertado se extrae primero, como una cola de personas. Operaciones enqueue y dequeue.",
-            "casos": "Gestion de procesos e hilos. Colas de trabajos e impresion."
-        },
+           "descripcion": "Estructura FIFO que permite almacenar y acceder a elementos de forma ordenada, el primero que entra sale primero como una cola de personas.",
+           "ventajas": [
+              "Sigue un orden estricto de llegada",
+              "Permite modelar situaciones reales como colas de impresión, tareas", 
+              "Fácil de implementar"
+           ],
+           "desventajas": [
+              "No se puede acceder a elementos arbitriarios sino hasta el principio de la cola",
+              "Requiere más memoria al tener que mantener referencia al principio y final"
+           ]
+        },  
         "hash": {
             "descripcion": "Estructura clave-valor que permite almacenar y acceder a pares mediante una funcion hash sobre la clave para calcular indices.",
             "ventajas": "Rendimiento en busqueda, insercion y eliminacion constantes.",
@@ -54,33 +71,28 @@
         }
     },
     "POO": {
-        "definicion": "Paradigma de programacion basado en objetos que emulan entidades reales con propiedades y metodos.",
-        "elementos": [
-            "Clases: Plantillas para crear objetos.",
-            "Objetos: Instancias de clases con propiedades y metodos especificos.",
-            "Herencia: Capacidad de una clase para heredar propiedades y metodos de otra.",
-            "Polimorfismo: Posibilidad de un objeto para comportarse de multiples maneras."
-        ],
+        "definicion": "Forma de programar basada en objetos que imitan cosas del mundo real con caracteristicas y comportamientos. La POO se asemeja a cómo organizamos y pensamos en el mundo real, donde las entidades (objetos) tienen características (atributos) y pueden realizar acciones (métodos).",
         "clases": {
-            "definicion": "Plantillas para crear objetos.",
-            "ejemplo": "class Vehiculo { /* Definicion de la clase */ }"
+            "definicion": "Modelos o moldes para crear objetos.",
+            "ejemplo": "Imagina que \"Coche\" es un modelo o plantilla que define las características y comportamientos comunes a todos los autos, como el número de ruedas, el color, la marca, etc"
         },
         "objetos": {
-            "definicion": "Instancias de clases con propiedades y metodos especificos.",
-            "ejemplo": "Vehiculo miAuto = new Vehiculo();"
+            "definicion": "Casos específicos de las clases con atributos y acciones propias.",
+            "ejemplo": "Cuando creas un objeto \"miAuto\" basado en la clase \"Coche\", estás creando un caso específico de un automóvil con sus propios detalles como el color rojo, marca Toyota, etc."
         },
         "herencia": {
-            "definicion": "Capacidad de una clase para heredar propiedades y metodos de otra.",
-            "ejemplo": "class Coche extends Vehiculo { /* Coche hereda de la clase Vehiculo */ }"
+            "definicion": "Capacidad de una clase para heredar características de otra.",
+            "ejemplo": "La clase \"Minivan\" puede heredar las características generales de la clase \"Coche\", como el número de ruedas, pero también puede tener características específicas adicionales, como el tipo de carrocería."
         },
         "polimorfismo": {
-            "definicion": "Posibilidad de un objeto para comportarse de multiples maneras.",
-            "ejemplo": "void mostrarInformacion(Vehiculo vehiculo) { /* Codigo polimorfico */ }"
+            "definicion": "Capacidad de un objeto para comportarse de varias maneras.",
+            "ejemplo": "La función \"acelerar\" puede aceptar tanto un objeto de la clase \"Coche\" como de la clase \"Minivan\", permitiendo que un mismo método funcione con diferentes tipos de objetos relacionados."
         },
         "encapsulamiento": {
-            "definicion": "Ocultar detalles internos de una clase y exponer solo lo necesario.",
-            "ejemplo": "private String contrasena; /* Ejemplo de variable encapsulada */"
+            "definicion": "Esconder detalles internos de una clase y mostrar solo lo necesario.",
+            "ejemplo": "Al definir una variable \"claveAcceso\" como privada en una clase, estás ocultando los detalles internos y exponiendo solo la interfaz necesaria para acceder o modificar esa informacion."
         }
+        
     },
 
     "PE PREGUNTA 1": [

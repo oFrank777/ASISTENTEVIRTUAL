@@ -109,6 +109,7 @@ def execute_start_logic():
         send_text_to_ui("RAZONES.")
         texto_a_audio(datos['razones'])
         texto_a_audio("Como se puede apreciar en la imagen, la Programación contiene varios aspectos y caracteristicas importantes, tales como:")
+        send_text_to_ui("Conceptos de Programacion.")
         texto_a_audio("Variables. Constantes. Tipos de datos. Operadores. Estructuras condicionales. Bucles. Funciones. Compiladores. Depuración. Algoritmos. Estructuras de datos. Programación Orientada a Objetos (POO).")
         
         respuesta = "estructuras de datos"
@@ -134,12 +135,117 @@ def execute_start_logic():
         elif respuesta == "algoritmos":
             texto_a_audio(datos['algoritmos'])
         elif respuesta == "estructuras de datos":
+            
+            send_text_to_ui("Estructuras de datos:")
             texto_a_audio(datos['estructuras_de_datos']['definicion'])
             texto_a_audio("existen distintos tipos de estructura, aqui te mostrare 5 de ellas.")
             send_text_to_ui("1) Arrays 2) Listas enlazadas 3) Pilas 4) Colas 5) Hash\n¿Por cual deseas empezar?")
             texto_a_audio("¿Por cual deseas empezar?")
-        
+            
+            while True:
 
+                respuesta = enviar_voz()
+
+                if cond(respuesta) == True:
+                    break
+
+                if respuesta == "arrays":
+                    send_text_to_ui("Arrays:")
+                    texto_a_audio(datos['estructuras_de_datos']['arrays']['descripcion'])
+                    texto_a_audio("aqui te presentamos ventajas y desventajas de este tipo de estructura. Ventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['arrays']['ventajas'])
+                    texto_a_audio("Desventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['arrays']['desventajas'])
+                
+                elif respuesta == "listas enlazadas":
+                    send_text_to_ui("Lista enlazadas:")
+                    texto_a_audio(datos['estructuras_de_datos']['listas_enlazadas']['descripcion'])
+                    texto_a_audio("aqui te presentamos ventajas y desventajas de este tipo de estructura. Ventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['listas_enlazadas']['ventajas'])
+                    texto_a_audio("Desventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['listas_enlazadas']['desventajas'])
+                
+                elif respuesta == "pilas":
+                    send_text_to_ui("Pilas:")
+                    texto_a_audio(datos['estructuras_de_datos']['pilas']['descripcion'])
+                    texto_a_audio("aqui te presentamos ventajas y desventajas de este tipo de estructura. Ventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['pilas']['ventajas'])
+                    texto_a_audio("Desventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['pilas']['desventajas'])
+                    
+                elif respuesta == "colas":
+                    send_text_to_ui("Colas:")
+                    texto_a_audio(datos['estructuras_de_datos']['colas']['descripcion'])
+                    texto_a_audio("aqui te presentamos ventajas y desventajas de este tipo de estructura. Ventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['colas']['ventajas'])
+                    texto_a_audio("Desventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['colas']['desventajas'])
+
+                elif respuesta == "hash":
+                    send_text_to_ui("Hash:")
+                    texto_a_audio(datos['estructuras_de_datos']['hash']['descripcion'])
+                    texto_a_audio("aqui te presentamos ventajas y desventajas de este tipo de estructura. Ventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['hash']['ventajas'])
+                    texto_a_audio("Desventajas:")
+                    texto_a_audio(datos['estructuras_de_datos']['hash']['desventajas'])
+
+                send_text_to_ui("¿Deseas saber sobre otra estructura?\n1) Arrays 2) Listas enlazadas 3) Pilas 4) Colas 5) Hash 6) No")
+                texto_a_audio("¿Deseas saber sobre otra estructura?")
+
+        elif respuesta == "progrmacion orientada a objetos":
+            send_text_to_ui("Programacion Orientada a Objetos:")
+            texto_a_audio(datos['POO']['definicion'])
+            texto_a_audio("existen distintos conceptos importantes en Programacion Orientada a objetos, aqui te mostrare 5 de ellas.")
+            send_text_to_ui("1) Clases 2) Objetos 3) Herencia 4) Polimorfismo 5) Encapsulamiento\n¿Por cual deseas empezar?")
+            texto_a_audio("¿Por cual deseas empezar?")
+
+            while True:
+
+                respuesta = enviar_voz()
+
+                if cond(respuesta) == True:
+                    break
+
+                if respuesta == "clases":
+                    send_text_to_ui("Clases:")
+                    texto_a_audio(datos['POO']['clases']['definicion'])
+                    texto_a_audio("Observa el ejemplo")
+                    texto_a_audio(datos['POO']['arrays']['ejemplo'])
+                                    
+                elif respuesta == "objetos":
+                    send_text_to_ui("Objetos:")
+                    texto_a_audio(datos['POO']['objetos']['definicion'])
+                    texto_a_audio("Observa el ejemplo")
+                    texto_a_audio(datos['POO']['objetos']['ejemplo'])
+                
+                elif respuesta == "herencia":
+                    send_text_to_ui("Herencia:")
+                    texto_a_audio(datos['POO']['herencia']['definicion'])
+                    texto_a_audio("Observa el ejemplo")
+                    texto_a_audio(datos['POO']['herencia']['ejemplo'])
+                                        
+                elif respuesta == "polimorfismo":
+                    send_text_to_ui("Polimorfismo:")
+                    texto_a_audio(datos['POO']['polimorfismo']['definicion'])
+                    texto_a_audio("Observa el ejemplo")
+                    texto_a_audio(datos['POO']['polimorfismo']['ejemplo'])
+                
+                elif respuesta == "encapsulamiento":
+                    send_text_to_ui("Encapsulamiento:")
+                    texto_a_audio(datos['POO']['encapsulamiento']['definicion'])
+                    texto_a_audio("Observa el ejemplo")
+                    texto_a_audio(datos['POO']['encapsulamiento']['ejemplo'])
+
+                send_text_to_ui("¿Deseas saber sobre otro concepto?\n1) Clases 2) Objetos 3) Herencia 4) Polimorfismo 5) Encapsulamiento 6) No")
+                texto_a_audio("¿Deseas saber sobre otra estructura?")
+
+
+def cond(opcion):
+                if opcion == "no":
+                    return True
+                else:
+                    return False
+                
 def enviar_voz():
     palabra = capturar_voz(recognizer, microphone)
     if not palabra["suceso"]:
