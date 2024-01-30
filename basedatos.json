@@ -1,160 +1,159 @@
 {
     "bienvenida": [
-        "Hola. Soy tu Asistente Virtual. Fui creada para instruirte todo respecto al hermoso mundo de la programacion. Antes de empezar ¿Podrias decirme tu nombre?"
+        "Soy tu Asistente Virtual. Fui creada para instruirte todo respecto al hermoso mundo de la programacion."
     ],
     "definicion": [
-        "La programación es el proceso de crear un conjunto detallado de instrucciones y algoritmos que guían a una computadora para realizar acciones específicas y solucionar problemas. Es decir, le indicamos a la máquina cómo ejecutar pasos en un orden determinado para lograr un objetivo."
+        "La programacion es el proceso de crear un conjunto detallado de instrucciones y algoritmos que guian a una computadora para realizar acciones especificas y solucionar problemas. Es decir, le indicamos a la maquina como ejecutar pasos en un orden determinado para lograr un objetivo."
     ],
     "importancia": [
-        "En la era digital actual, aprender las bases de la programación es absolutamente esencial por varias razones importantes:"
+        "En la era digital actual, aprender las bases de la programacion es absolutamente esencial por varias razones importantes:"
     ],
     "razones": [
         "Nos permite automatizar tareas manuales repetitivas y propensas a errores humanos, optimizando tiempo y recursos.",
         "Nos capacita para resolver problemas complejos de todo tipo, desde calcular trayectorias de cohetes hasta predecir el clima.",
-        "Nos habilita a desarrollar aplicaciones web y móviles innovadoras que mejoren la vida de millones de personas.",
-        "Nos da el poder de crear videojuegos, animaciones, efectos visuales y experiencias interactivas gracias a la programación gráfica.",
-        "Nos ayuda a proteger información confidencial y mejorar la seguridad informática en general.",
-        "Nos permite recolectar y analizar grandes volúmenes de datos para obtener ideas valiosas y predecir tendencias.",
-        "En resumen, dominar conceptos de programación en la era digital es tan importante como saber leer y escribir."
+        "Nos habilita a desarrollar aplicaciones web y moviles innovadoras que mejoren la vida de millones de personas.",
+        "Nos da el poder de crear videojuegos, animaciones, efectos visuales y experiencias interactivas gracias a la programacion grafica.",
+        "Nos ayuda a proteger informacion confidencial y mejorar la seguridad informatica en general.",
+        "Nos permite recolectar y analizar grandes volumenes de datos para obtener ideas valiosas y predecir tendencias.",
+        "En resumen, dominar conceptos de programacion en la era digital es tan importante como saber leer y escribir."
     ],
-    "variables": "Las variables son contenedores que almacenan datos que pueden modificarse durante la ejecución de un programa. Se definen con un nombre descriptivo y un tipo de datos asociado como texto, número, booleano, etc. Sirven para guardar valores que se utilizarán en distintas partes del código.",
-    "constantes": "Las constantes también almacenan valores, pero que mantienen un valor fijo que no cambia. Se suelen definir con nombres en mayúsculas por convención. Algunos ejemplos son PI=3.14 o GRUPO_EDAD=20-35. Sirven para representar valores fijos que no variarán.",
-    "tipos_de_datos": "Los tipos de datos definen el tipo de valor que puede almacenar una variable o constante. Los tipos primarios más comunes en todos los lenguajes son: Números enteros y decimales para operaciones matemáticas, Cadenas de texto para alfanuméricos, Booleanos para verdadero/falso, Arrays y objetos para estructuras complejas.",
-    "operadores": "Los operadores permiten realizar acciones sobre variables y valores, como asignación (=), matemáticos (+, -, *, /), comparación (>, <, ==), lógicos (and, or, not) entre muchos otros. Permiten construir expresiones complejas.",
-    "estructuras_condicionales": "Las estructuras condicionales permiten bifurcación en el programa dependiendo de si una expresión lógica es cierta o falsa. Los principales son el if y else para ejecutar código si se cumple o no una condición. También switch (comparación) y try/catch para manejo de errores.",
-    "bucles": "Los bucles permiten ejecutar repetidamente un bloque de código mientras se cumpla una condición. Los principales son for, mientras se cumpla un contador, y while, mientras se cumpla una expresión lógica. Se utilizan para iteraciones, leer arrays, lectura de archivos, iteraciones infinitas y más.",
-    "funciones": "Bloques de código identificados con un nombre que se pueden reutilizar fácilmente.",
-    "compiladores": "traducen lenguajes al código máquina entendible por los computadores.",
-    "depuración": "técnicas para identificar errores, bugs y fallos lógicos en el código.",
-    "algoritmos": "automatizan y resuelven problemas complejos de manera genérica y escalable.",
+    "variables": "Las variables son contenedores que almacenan datos que pueden modificarse durante la ejecucion de un programa. Se definen con un nombre descriptivo y un tipo de datos asociado como texto, numero, booleano, etc. Sirven para guardar valores que se utilizaran en distintas partes del codigo.",
+    "constantes": "Las constantes tambien almacenan valores, pero que mantienen un valor fijo que no cambia. Se suelen definir con nombres en mayusculas por convencion. Algunos ejemplos son PI=3.14 o GRUPO_EDAD=20-35. Sirven para representar valores fijos que no variaran.",
+    "tipos_de_datos": "Los tipos de datos definen el tipo de valor que puede almacenar una variable o constante. Los tipos primarios mas comunes en todos los lenguajes son: Numeros enteros y decimales para operaciones matematicas, Cadenas de texto para alfanumericos, Booleanos para verdadero/falso, Arrays y objetos para estructuras complejas.",
+    "operadores": "Los operadores permiten realizar acciones sobre variables y valores, como asignacion (=), matematicos (+, -, *, /), comparacion (>, <, ==), logicos (and, or, not) entre muchos otros. Permiten construir expresiones complejas.",
+    "estructuras_condicionales": "Las estructuras condicionales permiten bifurcacion en el programa dependiendo de si una expresion logica es cierta o falsa. Los principales son el if y else para ejecutar codigo si se cumple o no una condicion. Tambien switch (comparacion) y try/catch para manejo de errores.",
+    "bucles": "Los bucles permiten ejecutar repetidamente un bloque de codigo mientras se cumpla una condicion. Los principales son for, mientras se cumpla un contador, y while, mientras se cumpla una expresion logica. Se utilizan para iteraciones, leer arrays, lectura de archivos, iteraciones infinitas y mas.",
+    "funciones": "Bloques de codigo identificados con un nombre que se pueden reutilizar facilmente.",
+    "compiladores": "traducen lenguajes al codigo maquina entendible por los computadores.",
+    "depuracion": "tecnicas para identificar errores, bugs y fallos logicos en el codigo.",
+    "algoritmos": "automatizan y resuelven problemas complejos de manera generica y escalable.",
     "estructuras_de_datos": {
-        "definicion": "Las estructuras de datos son formas específicas de organizar y almacenar datos en la memoria de un programa para acceder y modificar los elementos de manera eficiente.",
+        "definicion": "Las estructuras de datos son formas especificas de organizar y almacenar datos en la memoria de un programa para acceder y modificar los elementos de manera eficiente.",
         "arrays": {
-            "descripcion": "Los arreglos o arrays son estructuras indexadas que permiten acceder a sus elementos mediante índices numéricos, comenzando generalmente desde cero. Permiten almacenar y recorrer colecciones de elementos del mismo tipo.",
-            "ventajas": "Acceso rápido a elementos específicos. Uso sencillo. Contigüidad en memoria. Muchas funciones integradas.",
+            "descripcion": "Los arreglos o arrays son estructuras indexadas que permiten acceder a sus elementos mediante indices numericos, comenzando generalmente desde cero. Permiten almacenar y recorrer colecciones de elementos del mismo tipo.",
+            "ventajas": "Acceso rapido a elementos especificos. Uso sencillo. Contiguedad en memoria. Muchas funciones integradas.",
             "desventajas": "Tamaño fijo en algunos lenguajes. Costoso redimensionar. Ineficiente para inserciones/eliminaciones."
         },
         "listas_enlazadas": {
             "descripcion": "Las listas vinculadas almacenan secuencias de elementos no contiguos en memoria. Cada elemento tiene un puntero al siguiente, formando una cadena de nodos.",
-            "ventajas": "Tamaño dinámico. Fácil de expandir. Inserción y eliminación eficiente al principio.",
+            "ventajas": "Tamaño dinamico. Facil de expandir. Insercion y eliminacion eficiente al principio.",
             "desventajas": "Acceso secuencial. Mayor uso de memoria por los punteros. Recorrer todos los elementos es lento."
         },
         "pilas": {
-            "descripcion": "Estructura LIFO (Last In First Out) donde el último elemento insertado se saca primero, como una pila de platos. Operaciones push y pop.",
-            "casos": "Rehacer/deshacer en editores. Historial de navegación web. Funciones recursivas."
+            "descripcion": "Estructura LIFO (Last In First Out) donde el ultimo elemento insertado se saca primero, como una pila de platos. Operaciones push y pop.",
+            "casos": "Rehacer/deshacer en editores. Historial de navegacion web. Funciones recursivas."
         },
         "colas": {
             "descripcion": "Estructura FIFO (First In First Out) donde el primer elemento insertado se extrae primero, como una cola de personas. Operaciones enqueue y dequeue.",
-            "casos": "Gestión de procesos e hilos. Colas de trabajos e impresión."
+            "casos": "Gestion de procesos e hilos. Colas de trabajos e impresion."
         },
         "hash": {
-            "descripcion": "Estructura clave-valor que permite almacenar y acceder a pares mediante una función hash sobre la clave para calcular índices.",
-            "ventajas": "Rendimiento en búsqueda, inserción y eliminación constantes.",
-            "desventajas": "Colisiones entre claves mapeadas al mismo índice. Más uso de memoria."
+            "descripcion": "Estructura clave-valor que permite almacenar y acceder a pares mediante una funcion hash sobre la clave para calcular indices.",
+            "ventajas": "Rendimiento en busqueda, insercion y eliminacion constantes.",
+            "desventajas": "Colisiones entre claves mapeadas al mismo indice. Mas uso de memoria."
         }
     },
     "POO": {
-        "definicion": "Paradigma de programación basado en objetos que emulan entidades reales con propiedades y métodos.",
+        "definicion": "Paradigma de programacion basado en objetos que emulan entidades reales con propiedades y metodos.",
         "elementos": [
             "Clases: Plantillas para crear objetos.",
-            "Objetos: Instancias de clases con propiedades y métodos específicos.",
-            "Herencia: Capacidad de una clase para heredar propiedades y métodos de otra.",
-            "Polimorfismo: Posibilidad de un objeto para comportarse de múltiples maneras."
+            "Objetos: Instancias de clases con propiedades y metodos especificos.",
+            "Herencia: Capacidad de una clase para heredar propiedades y metodos de otra.",
+            "Polimorfismo: Posibilidad de un objeto para comportarse de multiples maneras."
         ],
         "clases": {
             "definicion": "Plantillas para crear objetos.",
-            "ejemplo": "class Vehiculo { /* Definición de la clase */ }"
+            "ejemplo": "class Vehiculo { /* Definicion de la clase */ }"
         },
         "objetos": {
-            "definicion": "Instancias de clases con propiedades y métodos específicos.",
+            "definicion": "Instancias de clases con propiedades y metodos especificos.",
             "ejemplo": "Vehiculo miAuto = new Vehiculo();"
         },
         "herencia": {
-            "definicion": "Capacidad de una clase para heredar propiedades y métodos de otra.",
+            "definicion": "Capacidad de una clase para heredar propiedades y metodos de otra.",
             "ejemplo": "class Coche extends Vehiculo { /* Coche hereda de la clase Vehiculo */ }"
         },
         "polimorfismo": {
-            "definicion": "Posibilidad de un objeto para comportarse de múltiples maneras.",
-            "ejemplo": "void mostrarInformacion(Vehiculo vehiculo) { /* Código polimórfico */ }"
+            "definicion": "Posibilidad de un objeto para comportarse de multiples maneras.",
+            "ejemplo": "void mostrarInformacion(Vehiculo vehiculo) { /* Codigo polimorfico */ }"
         },
         "encapsulamiento": {
             "definicion": "Ocultar detalles internos de una clase y exponer solo lo necesario.",
-            "ejemplo": "private String contraseña; /* Ejemplo de variable encapsulada */"
+            "ejemplo": "private String contrasena; /* Ejemplo de variable encapsulada */"
         }
     },
 
     "PE PREGUNTA 1": [
-        "¿Cuál es el objetivo principal del pensamiento computacional?",
-        "a) Resolver problemas utilizando algoritmos y abstracción.",
-        "b) Programar robots y sistemas autónomos.",
-        "c) Diseñar hardware de computadoras."
-      ],
-      
-      "PE PREGUNTA 2": [
-        "El primer paso del pensamiento computacional es identificar el problema.", 
+        "¿Cual es el objetivo principal del pensamiento computacional?",
+        "a) Resolver problemas utilizando algoritmos y abstraccion.",
+        "b) Programar robots y sistemas autonomos.",
+        "c) Disenar hardware de computadoras."
+    ],
+
+    "PE PREGUNTA 2": [
+        "El primer paso del pensamiento computacional es identificar el problema.",
         "a) Verdadero",
         "b) Falso"
-      ],
-      
-      "PE PREGUNTA 3": [
-        "¿Qué es un algoritmo en términos de pensamiento computacional?",
-        "a) Un patrón de diseño visual",
-        "b) Un lenguaje de programación", 
+    ],
+
+    "PE PREGUNTA 3": [
+        "¿Que es un algoritmo en terminos de pensamiento computacional?",
+        "a) Un patron de diseno visual",
+        "b) Un lenguaje de programacion",
         "c) Una secuencia de pasos para resolver un problema",
-        "d) Una representación gráfica de datos"  
-      ],
-      
-      "PE PREGUNTA 4": [
-        "¿Para qué sirven las variables en programación?",
+        "d) Una representacion grafica de datos"
+    ],
+
+    "PE PREGUNTA 4": [
+        "¿Para que sirven las variables en programacion?",
         "a) Para almacenar datos que no cambian",
-        "b) Para realizar operaciones matemáticas",
-        "c) Para almacenar datos que pueden modificarse durante la ejecución de un programa"  
-      ],
-      
-      "PE PREGUNTA 5": [
-        "¿Cuál es la diferencia entre variables y constantes?",
+        "b) Para realizar operaciones matematicas",
+        "c) Para almacenar datos que pueden modificarse durante la ejecucion de un programa"
+    ],
+
+    "PE PREGUNTA 5": [
+        "¿Cual es la diferencia entre variables y constantes?",
         "a) Ninguna, son lo mismo",
-        "b) Las variables mantienen un valor fijo", 
+        "b) Las variables mantienen un valor fijo",
         "c) Las constantes mantienen un valor fijo que no cambia"
-      ],
-      
-      "PE PREGUNTA 6": [
+    ],
+
+    "PE PREGUNTA 6": [
         "Menciona dos ejemplos de estructuras de datos",
         "a) Colas y pilas",
         "b) Arreglos y listas enlazadas",
-        "c) Arreglos y árboles",
+        "c) Arreglos y arboles",
         "d) Matrices y grafos"
-      ],
-      
-      "PE PREGUNTA 7": [
-         "¿Qué es la programación orientada a objetos?",
-         "a) Paradigma de programación basado en módulos funcionales",
-         "b) Paradigma de programación basado en algoritmos",
-         "c) Paradigma de programación basado en objetos que emulan entidades reales con propiedades y métodos"
-      ],
-      
-      "PE PREGUNTA 8": [
-        "Explica un uso típico de una pila como estructura de datos",
-        "a) Administración de memoria dinámica",
+    ],
+
+    "PE PREGUNTA 7": [
+        "¿Que es la programacion orientada a objetos?",
+        "a) Paradigma de programacion basado en modulos funcionales",
+        "b) Paradigma de programacion basado en algoritmos",
+        "c) Paradigma de programacion basado en objetos que emulan entidades reales con propiedades y metodos"
+    ],
+
+    "PE PREGUNTA 8": [
+        "Explica un uso tipico de una pila como estructura de datos",
+        "a) Administracion de memoria dinamica",
         "b) Rehacer/deshacer en editores de texto",
         "c) Almacenamiento temporal de datos",
-        "d) Comunicación entre programas"
-      ],
-      
-      "PE PREGUNTA 9": [
-        "¿Para qué sirven las estructuras condicionales en programación?",
-        "a) Para generar números aleatorios",
-        "b) Para bifurcar el flujo del programa dependiendo de si una condición es cierta o falsa", 
+        "d) Comunicacion entre programas"
+    ],
+
+    "PE PREGUNTA 9": [
+        "¿Para que sirven las estructuras condicionales en programacion?",
+        "a) Para generar numeros aleatorios",
+        "b) Para bifurcar el flujo del programa dependiendo de si una condicion es cierta o falsa",
         "c) Para almacenar datos temporalmente",
-        "d) Para facilitar operaciones matemáticas"  
-      ],
-      
-      
-      "PE PREGUNTA 10": [
-        "Menciona un caso de uso típico para una cola como estructura de datos",
-        "a) Evaluador de expresiones matemáticas",  
+        "d) Para facilitar operaciones matematicas"
+    ],
+
+    "PE PREGUNTA 10": [
+        "Menciona un caso de uso tipico para una cola como estructura de datos",
+        "a) Evaluador de expresiones matematicas",
         "b) Autocompletado de palabras en un editor",
-        "c) Gestión de procesos e hilos en un sistema operativo",
+        "c) Gestion de procesos e hilos en un sistema operativo",
         "d) Animaciones en videojuegos"
-      ]
+    ]
 }
