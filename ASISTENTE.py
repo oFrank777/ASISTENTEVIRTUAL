@@ -84,7 +84,7 @@ def execute_start_logic():
     send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
     texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
     texto_a_audio(
-        "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+        "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
     send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
