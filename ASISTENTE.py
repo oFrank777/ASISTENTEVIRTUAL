@@ -86,8 +86,10 @@ def execute_start_logic():
     texto_a_audio(
         "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
     send_text_to_ui("¿Qué opción eliges?")
-      
+
+    mic_label.grid(column=0, row=2, pady=10)  
     respuesta = enviar_voz()
+    mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
 
@@ -109,7 +111,9 @@ def execute_start_logic():
         send_text_to_ui("Conceptos de Programacion.")
         texto_a_audio("Variables. Constantes. Tipos de datos. Operadores. Estructuras condicionales. Bucles. Funciones. Compiladores. Depuración. Algoritmos. Estructuras de datos. Programación Orientada a Objetos (POO).")
         
-        respuesta = "estructuras de datos"
+        mic_label.grid(column=0, row=2, pady=10)  
+        respuesta = enviar_voz()
+        mic_label.grid_forget()
 
         if respuesta == "variables":
             texto_a_audio(datos['variables'])
