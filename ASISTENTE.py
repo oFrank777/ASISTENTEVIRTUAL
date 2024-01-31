@@ -14,6 +14,7 @@ root = tk.Tk()
 root.iconbitmap("IMG/icon.ico")
 root.geometry("800x600")
 root.title("ASISTENTE VIRTUAL")
+root.config(bg="#262626")
 
 # Initialize images/widgets globally
 image_queue = queue.Queue()
@@ -22,10 +23,14 @@ image = Image.open("IMG/iaBackground.png")
 image = image.resize((790, 450))
 photo = ImageTk.PhotoImage(image)
 image_label = tk.Label(root, image = photo)
+image_label.config(bg="#262626")
 image_label.grid(column=0, row=0, pady=20)
 image_queue.put(photo)
 
 lbl_text = tk.Label(root, text="Haz click en el boton 'iniciar' para empezar", font=("Arial", 13, "bold"))
+lbl_text.config(bg="#262626",
+                fg="#fefae4", # color mostaza
+                font=("Oswald", 20, "bold")) 
 lbl_text.grid(column=0, row=1)
 
 # Queue for communication between threads
