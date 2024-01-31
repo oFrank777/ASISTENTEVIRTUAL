@@ -249,7 +249,7 @@ def execute_start_logic():
             else:
                 tus_respuestas.append(0)
 
-        image = Image.open("IMG/perifericos.jpg")
+        image = Image.open("IMG/cuestionario.png")
         image = image.resize((790, 450))
         photo = ImageTk.PhotoImage(image)
         image_queue.put(photo)
