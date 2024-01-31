@@ -83,78 +83,109 @@
         }
     },
 
-    "PE PREGUNTA 1": [
-        "¿Cuál es el objetivo principal del pensamiento computacional?",
-        "a) Resolver problemas utilizando algoritmos y abstracción.",
-        "b) Programar robots y sistemas autónomos.",
-        "c) Diseñar hardware de computadoras."
-      ],
-      
-      "PE PREGUNTA 2": [
-        "El primer paso del pensamiento computacional es identificar el problema.", 
-        "a) Verdadero",
-        "b) Falso"
-      ],
-      
-      "PE PREGUNTA 3": [
-        "¿Qué es un algoritmo en términos de pensamiento computacional?",
-        "a) Un patrón de diseño visual",
-        "b) Un lenguaje de programación", 
-        "c) Una secuencia de pasos para resolver un problema",
-        "d) Una representación gráfica de datos"  
-      ],
-      
-      "PE PREGUNTA 4": [
-        "¿Para qué sirven las variables en programación?",
+    
+    "PE_1": [
+
+        "Según la información presentada, ¿cuál es el objetivo principal de la programación?",
+            
+        "a) Automatizar tareas y resolver problemas mediante algoritmos",
+        "b) Crear aplicaciones móviles innovadoras",  
+        "c) Mejorar la interfaz de usuario de sitios web"
+
+    ],
+    "P1_RESPUESTA": "a",
+    "P1_JUSTIFICACION": "El objetivo principal de la programación es automatizar tareas y resolver problemas a través de algoritmos, no solo crear aplicaciones innovadoras o mejorar interfaces.",
+    
+    "PE_2": [
+        "¿Qué paradigma de programación permite representar entidades del mundo real?",
+        "a) Programación funcional",
+        "b) Programación orientada a objetos",
+        "c) Programación estructurada " 
+    ],
+    "P2_ RESPUESTA": "b",
+    "P2_JUSTIFICACION": "La programación orientada a objetos modela entidades del mundo real como objetos con propiedades y métodos.",
+    
+    "PE_3": [
+        "¿Cuál de las siguientes NO es una estructura de datos válida?",
+        "a) Árbol",
+        "b) Cola",
+        "c) Montón",
+        "d) Arreglo"
+    ],
+    "P3_RESPUESTA": "c", 
+    "P3_JUSTIFICACION": "Montón no es una estructura de datos en programación, las demás sí lo son.",
+
+    "PE_4": [
+        "¿Para que sirven las variables en programacion?",
         "a) Para almacenar datos que no cambian",
-        "b) Para realizar operaciones matemáticas",
-        "c) Para almacenar datos que pueden modificarse durante la ejecución de un programa"  
-      ],
-      
-      "PE PREGUNTA 5": [
-        "¿Cuál es la diferencia entre variables y constantes?",
+        "b) Para realizar operaciones matematicas",
+        "c) Para almacenar datos que pueden modificarse durante la ejecucion de un programa"
+    ],
+
+    "P4_RESPUESTA": "c",
+    "P4_JUSTIFICACION": "Las variables almacenan datos que pueden cambiar durante la ejecución.",
+    
+    "PE_5": [
+        "¿Cual es la diferencia entre variables y constantes?",
         "a) Ninguna, son lo mismo",
         "b) Las variables mantienen un valor fijo", 
         "c) Las constantes mantienen un valor fijo que no cambia"
-      ],
-      
-      "PE PREGUNTA 6": [
+    ],
+
+    "P5_RESPUESTA": "c",
+    "P5_JUSTIFICACION": "Las constantes mantienen un valor fijo, las variables pueden modificarse.",
+    
+    "PE_6": [
         "Menciona dos ejemplos de estructuras de datos",
         "a) Colas y pilas",
         "b) Arreglos y listas enlazadas",
-        "c) Arreglos y árboles",
+        "c) Arreglos y arboles",
         "d) Matrices y grafos"
-      ],
-      
-      "PE PREGUNTA 7": [
-         "¿Qué es la programación orientada a objetos?",
-         "a) Paradigma de programación basado en módulos funcionales",
-         "b) Paradigma de programación basado en algoritmos",
-         "c) Paradigma de programación basado en objetos que emulan entidades reales con propiedades y métodos"
-      ],
-      
-      "PE PREGUNTA 8": [
-        "Explica un uso típico de una pila como estructura de datos",
-        "a) Administración de memoria dinámica",
+    ],
+
+    "P6_RESPUESTA": "a",
+    "P6_JUSTIFICACION": "Colas y pilas son estructuras de datos válidas.",
+    
+    "PE_7": [
+        "¿Que es la programacion orientada a objetos?",
+        "a) Paradigma de programacion basado en modulos funcionales",
+        "b) Paradigma de programacion basado en algoritmos",
+        "c) Paradigma de programacion basado en objetos que emulan entidades reales con propiedades y metodos"
+    ],
+
+    "P7_RESPUESTA": "c",
+    "P7_JUSTIFICACION": "La POO modela entidades del mundo real como objetos con propiedades y métodos.",
+    
+    "PE_8": [
+        "Explica un uso tipico de una pila como estructura de datos",
+        "a) Administracion de memoria dinamica",
         "b) Rehacer/deshacer en editores de texto",
         "c) Almacenamiento temporal de datos",
-        "d) Comunicación entre programas"
-      ],
-      
-      "PE PREGUNTA 9": [
-        "¿Para qué sirven las estructuras condicionales en programación?",
-        "a) Para generar números aleatorios",
-        "b) Para bifurcar el flujo del programa dependiendo de si una condición es cierta o falsa", 
+        "d) Comunicacion entre programas"
+    ],
+
+    "P8_RESPUESTA": "b",
+    "P8_JUSTIFICACION": "Las pilas se usan en editores de texto para rehacer/deshacer cambios.",
+    
+    "PE_9": [
+        "¿Para que sirven las estructuras condicionales en programacion?",
+        "a) Para generar numeros aleatorios",
+        "b) Para bifurcar el flujo del programa dependiendo de si una condicion es cierta o falsa",
         "c) Para almacenar datos temporalmente",
-        "d) Para facilitar operaciones matemáticas"  
-      ],
-      
-      
-      "PE PREGUNTA 10": [
-        "Menciona un caso de uso típico para una cola como estructura de datos",
-        "a) Evaluador de expresiones matemáticas",  
+        "d) Para facilitar operaciones matematicas"
+    ],
+
+    "P9_RESPUESTA": "b",
+    "P9_JUSTIFICACION": "Las condicionales bifurcan el flujo si se cumple una condición.",
+    
+    "PE_10": [
+        "Menciona un caso de uso tipico para una cola como estructura de datos",
+        "a) Evaluador de expresiones matematicas",
         "b) Autocompletado de palabras en un editor",
-        "c) Gestión de procesos e hilos en un sistema operativo",
+        "c) Gestion de procesos e hilos en un sistema operativo",
         "d) Animaciones en videojuegos"
-      ]
+    ],
+
+    "P10_RESPUESTA": "c",
+    "P10_JUSTIFICACION": "Las colas se usan en SO para gestionar procesos o hilos."
 }
