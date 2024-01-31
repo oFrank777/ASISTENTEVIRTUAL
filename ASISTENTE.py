@@ -66,29 +66,29 @@ def main_thread_logic():
             execute_start_logic()
 
 def execute_start_logic():
-    send_text_to_ui("Bienvenid@")
+    # send_text_to_ui("Bienvenid@")
     btn_start.grid_forget()  
-    texto_a_audio("Bienvenido")
-    send_text_to_ui("¿Comó te llamas?")
-    texto_a_audio("¿Comó te llamas?")
+    # texto_a_audio("Bienvenido")
+    # send_text_to_ui("¿Comó te llamas?")
+    # texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
-    nombre = enviar_voz()
-    mic_label.grid_forget()
-    send_text_to_ui("Hola " + nombre)
-    texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    texto_a_audio(datos["bienvenida"])
-    texto_a_audio(
-        "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
-            nombre))
-    #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
-    send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
-    texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
-    texto_a_audio(
-        "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
-    send_text_to_ui("¿Qué opción eliges?")
+    # nombre = enviar_voz()
+    # mic_label.grid_forget()
+    # send_text_to_ui("Hola " + nombre)
+    # texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
+    # texto_a_audio(datos["bienvenida"])
+    # texto_a_audio(
+    #     "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
+    #         nombre))
+    # #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
+    # send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
+    # texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
+    # texto_a_audio(
+    #     "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+    # send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
-    respuesta = enviar_voz()
+    respuesta = "juegos"
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
@@ -398,6 +398,46 @@ def execute_start_logic():
 
     elif respuesta == "juegos":
         print ("juegos")
+        image = Image.open("IMG/ahorcado1.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        send_text_to_ui("Terminamos, veamos tus resultados...")
+        texto_a_audio("Terminamos, veamos tus resultados...")
+
+        image = Image.open("IMG/ahorcado2.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        image = Image.open("IMG/ahorcado3.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        image = Image.open("IMG/ahorcado4.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        image = Image.open("IMG/ahorcado5.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        image = Image.open("IMG/ahorcado6.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        image = Image.open("IMG/ahorcado7.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+        
+
+
     else:
         print("no elegiste nada")
 
@@ -429,11 +469,14 @@ def update_ui():
         pass
     
     try:
+        global photo
         photo = image_queue.get_nowait()     
-        image_label.config(image = photo)        
+        image_label.config(image = photo)
+
 
 
     except queue.Empty: 
+        print("hola pe")
         pass
         
     root.after(100, update_ui)
