@@ -449,8 +449,22 @@ main_thread.start()
 mic_image = ImageTk.PhotoImage(Image.open("IMG/mic_icon.png").resize((40, 40)))
 mic_label = tk.Label(root, image=mic_image, bd=0, width=40, height=40)
 
-btn_start = tk.Button(root, text="Iniciar", command=start, font=("Arial", 12, "bold"))
-btn_start.grid(column=0, row=2, pady=10)
+btn_start = tk.Button(root, text="Iniciar", command=start, 
+                      font=("Arial", 12, "bold"), 
+                      bg="#ffffff", fg="#555555", 
+                      borderwidth=0, 
+                      highlightthickness=0)
+
+btn_start.grid(column=0, row=2, pady=10)  
+
+def on_enter(e):
+    btn_start.config(font=("Arial", 14, "bold"))
+
+def on_leave(e):
+    btn_start.config(font=("Arial", 12, "bold"))
+
+btn_start.bind("<Enter>", on_enter)
+btn_start.bind("<Leave>", on_leave)
 
 # Run the main loop directly
 root.mainloop()
