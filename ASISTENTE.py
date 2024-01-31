@@ -109,12 +109,32 @@ def execute_start_logic():
         send_text_to_ui("Elegiste la opcion APRENDIZAJE.")
         texto_a_audio("Elegiste la opcion APRENDIZAJE.")
         texto_a_audio("Muy bien antes de empezar quisiera hacer una introduccion a el tema conocido como Programación.")
+        
+        image = Image.open("IMG/definicion.png")
+        image = image.resize((790, 450))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
         send_text_to_ui("Definicion de PROGRAMACION.")
         texto_a_audio(datos['definicion'])
+
+        image = Image.open("IMG/importancia.png")
+        image = image.resize((790, 450))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
         send_text_to_ui("IMPORTANCIA.")
         texto_a_audio(datos['importancia'])
+
+        image = Image.open("IMG/razones.png")
+        image = image.resize((790, 450))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
         send_text_to_ui("RAZONES.")
         texto_a_audio(datos['razones'])
+        
+        image = Image.open("IMG/conceptos.png")
+        image = image.resize((790, 450))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
         texto_a_audio("Como se puede apreciar en la imagen, la Programación contiene varios aspectos y caracteristicas importantes, tales como:")
         send_text_to_ui("Conceptos de Programacion.")
         texto_a_audio("Variables. Constantes. Tipos de datos. Operadores. Estructuras condicionales. Bucles. Funciones. Compiladores. Depuración. Algoritmos. Estructuras de datos. Programación Orientada a Objetos (POO).")
@@ -124,7 +144,12 @@ def execute_start_logic():
         mic_label.grid_forget()
 
         if respuesta == "variables":
+            image = Image.open("IMG/conceptos.png")
+            image = image.resize((790, 450))
+            photo = ImageTk.PhotoImage(image)
+            image_queue.put(photo)
             texto_a_audio(datos['variables'])
+            
         elif respuesta == "constantes":
             texto_a_audio(datos['constantes'])
         elif respuesta == "tipos de datos":
