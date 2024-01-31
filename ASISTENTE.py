@@ -377,20 +377,23 @@ def execute_start_logic():
             t1 = "P"
             t2 = "_RESPUESTA"
             t3 = "_JUSTIFICACION"
+            calificacion = 0
+            
+            for punto in tus_respuestas:
+                if punto == 1:
+                    calificacion + 1
+
+            send_text_to_ui("Tu puntuacion ha sido de ", calificacion, " sobre 10.")
+            texto_a_audio("Tu puntuacion ha sido de ", calificacion, " sobre 10.")
 
             for i, elemento in enumerate(tus_respuestas):
                 if elemento == 1:
                     send_text_to_ui("Pregunta ", i+1, "\nRespuesta Correcta:", datos[t1+str(i+1)+t2])
                     texto_a_audio("Pregunta ", i+1, "\nRespuesta Correcta:", datos[t1+str(i+1)+t2])
                     texto_a_audio("debido a que", datos[t1+str(i+1)+t3])
-             
-    
-    image = Image.open("IMG/iaBackground.jpg")
-    image = image.resize((790, 450))
-    photo = ImageTk.PhotoImage(image)
-    image_label = tk.Label(root, image = photo)
-    image_label.grid(column=0, row=0, pady=20)
-    image_queue.put(photo)
+
+    elif respuesta == "juegos":
+        respuesta
 
 
 def cond(opcion):
