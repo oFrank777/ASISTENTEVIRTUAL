@@ -34,25 +34,44 @@
             "ventajas": "Acceso rápido a elementos específicos. Uso sencillo. Contigüidad en memoria. Muchas funciones integradas.",
             "desventajas": "Tamaño fijo en algunos lenguajes. Costoso redimensionar. Ineficiente para inserciones/eliminaciones."
         },
+
         "listas_enlazadas": {
             "descripcion": "Las listas vinculadas almacenan secuencias de elementos no contiguos en memoria. Cada elemento tiene un puntero al siguiente, formando una cadena de nodos.",
-            "ventajas": "Tamaño dinámico. Fácil de expandir. Inserción y eliminación eficiente al principio.",
+            "ventajas": "Tamaño dinamico. Facil de expandir. Insercion y eliminacion eficiente al principio.",
             "desventajas": "Acceso secuencial. Mayor uso de memoria por los punteros. Recorrer todos los elementos es lento."
         },
         "pilas": {
-            "descripcion": "Estructura LIFO (Last In First Out) donde el último elemento insertado se saca primero, como una pila de platos. Operaciones push y pop.",
-            "casos": "Rehacer/deshacer en editores. Historial de navegación web. Funciones recursivas."
+            "descripcion": "Estructura LIFO que permite almacenar y acceder a elementos de forma ordenada, el último que entra sale primero como una pila de platos.",
+            "ventajas": [
+                "Implementación sencilla",
+                "Rápido acceso al último elemento insertado", 
+                "Útil para deshacer/rehacer cambios"
+            ],
+            "desventajas": [
+               "Solo se puede acceder al último elemento insertado",
+               "No es posible acceder a elementos arbitrarios o al principio de la pila"  
+            ]
         },
+      
         "colas": {
-            "descripcion": "Estructura FIFO (First In First Out) donde el primer elemento insertado se extrae primero, como una cola de personas. Operaciones enqueue y dequeue.",
-            "casos": "Gestión de procesos e hilos. Colas de trabajos e impresión."
-        },
+           "descripcion": "Estructura FIFO que permite almacenar y acceder a elementos de forma ordenada, el primero que entra sale primero como una cola de personas.",
+           "ventajas": [
+              "Sigue un orden estricto de llegada",
+              "Permite modelar situaciones reales como colas de impresión, tareas", 
+              "Fácil de implementar"
+           ],
+           "desventajas": [
+              "No se puede acceder a elementos arbitriarios sino hasta el principio de la cola",
+              "Requiere más memoria al tener que mantener referencia al principio y final"
+           ]
+        },  
         "hash": {
-            "descripcion": "Estructura clave-valor que permite almacenar y acceder a pares mediante una función hash sobre la clave para calcular índices.",
-            "ventajas": "Rendimiento en búsqueda, inserción y eliminación constantes.",
-            "desventajas": "Colisiones entre claves mapeadas al mismo índice. Más uso de memoria."
+            "descripcion": "Estructura clave-valor que permite almacenar y acceder a pares mediante una funcion hash sobre la clave para calcular indices.",
+            "ventajas": "Rendimiento en busqueda, insercion y eliminacion constantes.",
+            "desventajas": "Colisiones entre claves mapeadas al mismo indice. Mas uso de memoria."
         }
     },
+    
     "POO": {
         "definicion": "Paradigma de programación basado en objetos que emulan entidades reales con propiedades y métodos.",
         "elementos": [
@@ -83,7 +102,7 @@
         }
     },
 
-    
+
     "PE_1": [
 
         "Según la información presentada, ¿cuál es el objetivo principal de la programación?",
