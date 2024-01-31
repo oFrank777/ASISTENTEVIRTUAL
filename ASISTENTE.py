@@ -18,7 +18,7 @@ root.title("ASISTENTE VIRTUAL")
 # Initialize images/widgets globally
 image_queue = queue.Queue()
 
-image = Image.open("IMG/iaBackground.jpg")
+image = Image.open("IMG/iaBackground.png")
 image = image.resize((790, 450))
 photo = ImageTk.PhotoImage(image)
 image_label = tk.Label(root, image = photo)
