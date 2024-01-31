@@ -95,42 +95,53 @@
         
     },
 
-    "PE PREGUNTA 1": [
-        "¿Cual es el objetivo principal del pensamiento computacional?",
-        "a) Resolver problemas utilizando algoritmos y abstraccion.",
-        "b) Programar robots y sistemas autonomos.",
-        "c) Disenar hardware de computadoras."
-    ],
+    "PE_1": [
 
-    "PE PREGUNTA 2": [
-        "El primer paso del pensamiento computacional es identificar el problema.",
-        "a) Verdadero",
-        "b) Falso"
-    ],
+        "Según la información presentada, ¿cuál es el objetivo principal de la programación?",
+        
+        "a) Automatizar tareas y resolver problemas mediante algoritmos",
+        "b) Crear aplicaciones móviles innovadoras",  
+        "c) Mejorar la interfaz de usuario de sitios web"
 
-    "PE PREGUNTA 3": [
-        "¿Que es un algoritmo en terminos de pensamiento computacional?",
-        "a) Un patron de diseno visual",
-        "b) Un lenguaje de programacion",
-        "c) Una secuencia de pasos para resolver un problema",
-        "d) Una representacion grafica de datos"
-    ],
+     ],
+     "P1_RESPUESTA": "a",
+     
+     "PE_2": [
+        "¿Qué paradigma de programación permite representar entidades del mundo real?",
+        "a) Programación funcional",
+        "b) Programación orientada a objetos",
+        "c) Programación estructurada " 
+     ],
+     "P2_ RESPUESTA": "b",
+     
+     "PE_3": [
+        "¿Cuál de las siguientes NO es una estructura de datos válida?",
+        "a) Árbol",
+        "b) Cola",
+        "c) Montón", 
+        "d) Arreglo"
+     ],
+     "P3_RESPUESTA": "c",
 
-    "PE PREGUNTA 4": [
+    "PE_4": [
         "¿Para que sirven las variables en programacion?",
         "a) Para almacenar datos que no cambian",
         "b) Para realizar operaciones matematicas",
         "c) Para almacenar datos que pueden modificarse durante la ejecucion de un programa"
     ],
 
-    "PE PREGUNTA 5": [
+    "P4_RESPUESTA": "c",
+    
+    "PE_5": [
         "¿Cual es la diferencia entre variables y constantes?",
         "a) Ninguna, son lo mismo",
         "b) Las variables mantienen un valor fijo",
         "c) Las constantes mantienen un valor fijo que no cambia"
     ],
 
-    "PE PREGUNTA 6": [
+    "P5_RESPUESTA": "c",
+
+    "PE_6": [
         "Menciona dos ejemplos de estructuras de datos",
         "a) Colas y pilas",
         "b) Arreglos y listas enlazadas",
@@ -138,14 +149,18 @@
         "d) Matrices y grafos"
     ],
 
-    "PE PREGUNTA 7": [
+    "P6_RESPUESTA": "a",
+    
+    "PE_7": [
         "¿Que es la programacion orientada a objetos?",
         "a) Paradigma de programacion basado en modulos funcionales",
         "b) Paradigma de programacion basado en algoritmos",
         "c) Paradigma de programacion basado en objetos que emulan entidades reales con propiedades y metodos"
     ],
 
-    "PE PREGUNTA 8": [
+    "P7_RESPUESTA": "c",
+    
+    "PE_8": [
         "Explica un uso tipico de una pila como estructura de datos",
         "a) Administracion de memoria dinamica",
         "b) Rehacer/deshacer en editores de texto",
@@ -153,7 +168,9 @@
         "d) Comunicacion entre programas"
     ],
 
-    "PE PREGUNTA 9": [
+    "P8_RESPUESTA": "b",
+    
+    "PE_9": [
         "¿Para que sirven las estructuras condicionales en programacion?",
         "a) Para generar numeros aleatorios",
         "b) Para bifurcar el flujo del programa dependiendo de si una condicion es cierta o falsa",
@@ -161,11 +178,15 @@
         "d) Para facilitar operaciones matematicas"
     ],
 
-    "PE PREGUNTA 10": [
+    "P9_RESPUESTA": "b",    
+
+    "PE_10": [
         "Menciona un caso de uso tipico para una cola como estructura de datos",
         "a) Evaluador de expresiones matematicas",
         "b) Autocompletado de palabras en un editor",
         "c) Gestion de procesos e hilos en un sistema operativo",
         "d) Animaciones en videojuegos"
-    ]
+    ],
+
+    "P10_RESPUESTA": "c"
 }
