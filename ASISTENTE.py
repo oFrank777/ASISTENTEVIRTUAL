@@ -15,6 +15,9 @@ root.iconbitmap("IMG/icon.ico")
 root.geometry("800x600")
 root.title("ASISTENTE VIRTUAL")
 root.config(bg="#262626")
+root.resizable(False, False) # deshabilita redimensionamiento
+root.maxsize(800, 600) # establece tamaño máximo
+root.minsize(800, 600)
 
 # Initialize images/widgets globally
 image_queue = queue.Queue()
