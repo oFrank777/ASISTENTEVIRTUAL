@@ -80,8 +80,9 @@ def execute_start_logic():
     texto_a_audio(
         "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
             nombre))
-    send_text_to_ui("1) Aprendizaje   2) Tests    3) Juegos")
-    texto_a_audio("Aprendizaje. Tests. Juegos.")
+    #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
+    send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
+    texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
     texto_a_audio(
         "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Tests es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
     send_text_to_ui("¿Qué opción eliges?")
