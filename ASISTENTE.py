@@ -67,10 +67,13 @@ def main_thread_logic():
 
 def execute_start_logic():
     send_text_to_ui("Bienvenid@")
+    btn_start.grid_forget()  
     texto_a_audio("Bienvenido")
     send_text_to_ui("¿Comó te llamas?")
     texto_a_audio("¿Comó te llamas?")
+    mic_label.grid(column=0, row=2, pady=10)
     nombre = enviar_voz()
+    mic_label.grid_forget()
     send_text_to_ui("Hola " + nombre)
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
     texto_a_audio(datos["bienvenida"])
@@ -142,9 +145,9 @@ def execute_start_logic():
                 if cond(respuesta) == True:
                     break
 
-                if respuesta == "arrays":
+                if respuesta == "arreglos":
                     send_text_to_ui("Arrays:")
-                    texto_a_audio(datos['estructuras_de_datos']['arrays']['descripcion'])
+                    texto_a_audio(datos['estructuras_de_datos']['arreglos']['descripcion'])
                     texto_a_audio("aqui te presentamos ventajas y desventajas de este tipo de estructura. Ventajas:")
                     texto_a_audio(datos['estructuras_de_datos']['arrays']['ventajas'])
                     texto_a_audio("Desventajas:")
@@ -283,6 +286,9 @@ def start():
 main_thread = threading.Thread(target=main_thread_logic)
 main_thread.daemon = True
 main_thread.start()
+
+mic_image = ImageTk.PhotoImage(Image.open("IMG/mic_icon.png").resize((40, 40)))
+mic_label = tk.Label(root, image=mic_image, bd=0, width=40, height=40)
 
 btn_start = tk.Button(root, text="Iniciar", command=start, font=("Arial", 12, "bold"))
 btn_start.grid(column=0, row=2, pady=10)
