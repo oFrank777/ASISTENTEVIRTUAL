@@ -240,7 +240,7 @@ def execute_start_logic():
                 send_text_to_ui("¿Deseas saber sobre otro concepto?\n1) Clases 2) Objetos 3) Herencia 4) Polimorfismo 5) Encapsulamiento 6) No")
                 texto_a_audio("¿Deseas saber sobre otra estructura?")
 
-    elif respuesta == "Cuestionario":
+    elif respuesta == "cuestionario":
         print ("Cuestionario")
         
         def comp(solucion, rpta):
