@@ -208,7 +208,13 @@
     "P10_RESPUESTA": "c",
     "P10_JUSTIFICACION": "Las colas se usan en SO para gestionar procesos o hilos.",
 
-    "ahorcado": [
-        "herencia"
-    ]
+    "ahorcado": {
+        "p1":{
+            "palabra":"herencia",
+            "pistas":{
+                "p1":"Mecanismo por el cual una clase permite heredar las características (atributos y métodos) de otra clase",
+                "p2":"Permite que se puedan definir nuevas clases basadas de unas ya existentes a fin de reutilizar el código"  
+            }
+        }
+    }
 }
