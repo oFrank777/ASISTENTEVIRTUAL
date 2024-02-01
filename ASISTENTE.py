@@ -153,26 +153,10 @@ def main_thread_logic():
 def execute_start_logic():
     send_text_to_ui("Bienvenid@")
     btn_start.grid_forget()
-    # texto_a_audio("Bienvenido")
-    # send_text_to_ui("¿Comó te llamas?")
-    # texto_a_audio("¿Comó te llamas?")
-    # mic_label.grid(column=0, row=2, pady=10)
-    # nombre = enviar_voz()
-    # mic_label.grid_forget()
-    # send_text_to_ui("Hola " + nombre)
-    # texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    # texto_a_audio(datos["bienvenida"])
-    # texto_a_audio(
-    #      "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
-    #          nombre))
-    # #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
-    # send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
-    # texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
-    # texto_a_audio(
-    #      "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
-    # texto_a_audio("¿Qué opción eliges?")
-    # send_text_to_ui("¿Qué opción eliges?")
-
+    texto_a_audio("Bienvenido")
+    send_text_to_ui("¿Comó te llamas?")
+    texto_a_audio("¿Comó te llamas?")
+    mic_label.grid(column=0, row=2, pady=10)
     mic_label.grid(column=0, row=2, pady=10)
     nombre = "Jorge"
     mic_label.grid_forget()
@@ -191,7 +175,7 @@ def execute_start_logic():
     send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
-    respuesta = "cuestionario"
+    respuesta = "juegos"
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
@@ -645,7 +629,7 @@ def execute_start_logic():
 
 
     elif respuesta == "juegos":
-        image = Image.open("IMG/perifericos.jpg")
+        image = Image.open("IMG/juegos.png")
         image = image.resize((790, 450))
         photo = ImageTk.PhotoImage(image)
         image_queue.put(photo)
@@ -671,8 +655,10 @@ def execute_start_logic():
 
             while True:
                 send_text_to_ui("Escuchando tus indicaciones...")
-                texto_a_audio("Escuchando tus indicaciones...")                
+                texto_a_audio("Escuchando tus indicaciones...")
+                mic_label.grid(column=0, row=2, pady=10)                
                 respuesta = enviar_voz()
+                mic_label.grid_forget();
                 if respuesta == "arriba":
                     grid.move_up(None)
                 elif respuesta == "abajo":
@@ -698,47 +684,45 @@ def execute_start_logic():
             send_text_to_ui("Empezamos con el juego")
             texto_a_audio("Empezamos con el juego")
 
-        keys = list(datos["ahorcado"].keys())  
+            keys = list(datos["ahorcado"].keys())  
 
-        palabra_elegida = random.choice(keys) 
+            palabra_elegida = random.choice(keys) 
 
-        palabra = datos["ahorcado"][palabra_elegida]["palabra"]  
+            palabra = datos["ahorcado"][palabra_elegida]["palabra"]  
 
-        print(palabra_elegida)
+            print(palabra_elegida)
 
-        ahorcado_info = [palabra, texto_ahorcado(palabra), 0]
-        send_text_to_ui(ahorcado_info[1])
-        lbl_track.grid(column=0, row=3)
-        lbl_track.config(text=datos['ahorcado'][palabra_elegida]['pistas']['p1']+"\n"+datos['ahorcado'][palabra_elegida]['pistas']['p2'])
-
-        while True:
-            texto_a_audio("Elige una letra")
-            mic_label.grid(column=0, row=2, pady=10)
-            letra = enviar_voz()
-            mic_label.grid_forget()
-
-
-            print("se obtuvo la letra: " + letra[0])
-
+            ahorcado_info = [palabra, texto_ahorcado(palabra), 0]
             send_text_to_ui(ahorcado_info[1])
-            yalas = set()
+            lbl_track.grid(column=0, row=3)
+            lbl_track.config(text=datos['ahorcado'][palabra_elegida]['pistas']['p1']+"\n"+datos['ahorcado'][palabra_elegida]['pistas']['p2'])
 
-            yala = corroborar_letra(ahorcado_info, letra[0], yalas)
-            if yala:
-                texto_a_audio("Ya elegiste esa palabra")
-            else:
-                print("mi nueva cadena es")
-                print(ahorcado_info[1])
+            while True:
+                texto_a_audio("Elige una letra")
+                mic_label.grid(column=0, row=2, pady=10)
+                letra = enviar_voz()
+                mic_label.grid_forget()
+
+
+                print("se obtuvo la letra: " + letra[0])
+
                 send_text_to_ui(ahorcado_info[1])
+                yalas = set()
 
-                actualizaar_imagen_ahorcado(ahorcado_info[2])
+                yala = corroborar_letra(ahorcado_info, letra[0], yalas)
+                if yala:
+                    texto_a_audio("Ya elegiste esa palabra")
+                else:
+                    print("mi nueva cadena es")
+                    print(ahorcado_info[1])
+                    send_text_to_ui(ahorcado_info[1])
 
-            if ahorcado_info[2] == 6:
-                lbl_track.config(text="PERDISTE")
-                texto_a_audio("perdiste")
-                break
+                    actualizaar_imagen_ahorcado(ahorcado_info[2])
 
-    
+                if ahorcado_info[2] == 6:
+                    lbl_track.config(text="PERDISTE")
+                    texto_a_audio("perdiste")
+                    break 
 
 def actualizaar_imagen_ahorcado(contador):
     nombre = "IMG/ahorcado" + str(contador + 1) + ".jpg"
