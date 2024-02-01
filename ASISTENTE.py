@@ -30,6 +30,7 @@ image_label = tk.Label(root, image = photo)
 
 print((root.winfo_reqwidth()))
 image_label.grid(column=0, row=0, pady=20, padx=((800 - photo.width())/ 2))
+image_label.config(bg="#262626")
 image_queue.put(photo)
 
 lbl_text = tk.Label(root, text="Haz click en el boton 'iniciar' para empezar", font=("Arial", 13, "bold"))
@@ -95,10 +96,11 @@ def execute_start_logic():
     texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
     texto_a_audio(
         "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+    texto_a_audio("¿Qué opción eliges?")
     send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
-    respuesta = "juegos"
+    respuesta = enviar_voz()
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
