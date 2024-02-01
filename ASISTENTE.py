@@ -150,36 +150,34 @@ def main_thread_logic():
             execute_start_logic()
 
 def execute_start_logic():
-    # send_text_to_ui("Bienvenid@")
-    # btn_start.grid_forget()
-    # texto_a_audio("Bienvenido")
-    # send_text_to_ui("¿Comó te llamas?")
-    # texto_a_audio("¿Comó te llamas?")
-    # mic_label.grid(column=0, row=2, pady=10)
-    # nombre = enviar_voz()
-    # mic_label.grid_forget()
-    # send_text_to_ui("Hola " + nombre)
-    # texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    # texto_a_audio(datos["bienvenida"])
-    # texto_a_audio(
-    #     "{} ahora voy a explicarte sobre las opciones que tiene este programa.".format(
-    #         nombre))
-    # debug
+    send_text_to_ui("Bienvenid@")
+    btn_start.grid_forget()
+    texto_a_audio("Bienvenido")
+    send_text_to_ui("¿Comó te llamas?")
+    texto_a_audio("¿Comó te llamas?")
+    mic_label.grid(column=0, row=2, pady=10)
+    nombre = enviar_voz()
+    mic_label.grid_forget()
+    send_text_to_ui("Hola " + nombre)
+    texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
+    texto_a_audio(datos["bienvenida"])
+    texto_a_audio(
+        "{} ahora voy a explicarte sobre las opciones que tiene este programa.".format(
+            nombre))
+    
     #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
     while True:
-        # texto_a_audio("Tienes estas opciones para escoger.")
-        # send_text_to_ui("1) Aprendizaje   2) Cuestionario    3) Juegos   4) Salir")
-        # texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
-        # texto_a_audio(
-        #     "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
-        # texto_a_audio("¿Qué opción eliges?")
-        # send_text_to_ui("¿Qué opción eliges?")
+        texto_a_audio("Tienes estas opciones para escoger.")
+        send_text_to_ui("1) Aprendizaje   2) Cuestionario    3) Juegos   4) Salir")
+        texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
+        texto_a_audio(
+            "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+        texto_a_audio("¿Qué opción eliges?")
+        send_text_to_ui("¿Qué opción eliges?")
 
-        # mic_label.grid(column=0, row=2, pady=10)  
-        # respuesta = enviar_voz()
-        # mic_label.grid_forget()
-        # debug
-        respuesta = "juegos"
+        mic_label.grid(column=0, row=2, pady=10)  
+        respuesta = enviar_voz()
+        mic_label.grid_forget()
 
         if respuesta == "aprendizaje":
 
