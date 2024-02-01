@@ -76,26 +76,26 @@ def main_thread_logic():
             execute_start_logic()
 
 def execute_start_logic():
-    # send_text_to_ui("Bienvenid@")
+    send_text_to_ui("Bienvenid@")
     btn_start.grid_forget()  
-    # texto_a_audio("Bienvenido")
-    # send_text_to_ui("¿Comó te llamas?")
-    # texto_a_audio("¿Comó te llamas?")
+    texto_a_audio("Bienvenido")
+    send_text_to_ui("¿Comó te llamas?")
+    texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
-    # nombre = enviar_voz()
-    # mic_label.grid_forget()
-    # send_text_to_ui("Hola " + nombre)
-    # texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    # texto_a_audio(datos["bienvenida"])
-    # texto_a_audio(
-    #     "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
-    #         nombre))
-    # #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
-    # send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
-    # texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
-    # texto_a_audio(
-    #     "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
-    # send_text_to_ui("¿Qué opción eliges?")
+    nombre = enviar_voz()
+    mic_label.grid_forget()
+    send_text_to_ui("Hola " + nombre)
+    texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
+    texto_a_audio(datos["bienvenida"])
+    texto_a_audio(
+        "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
+            nombre))
+    #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
+    send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
+    texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
+    texto_a_audio(
+        "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+    send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
     respuesta = "juegos"
@@ -377,13 +377,13 @@ def execute_start_logic():
                 send_text_to_ui("¿Deseas saber sobre otro concepto?\n1) Clases 2) Objetos 3) Herencia 4) Polimorfismo 5) Encapsulamiento 6) No")
                 texto_a_audio("¿Deseas saber sobre otra estructura?")
         
-        btn_start = tk.Button(root, text="Volver a iniciar", command=start, 
-                      font=("Arial", 12, "bold"), 
-                      bg="#ffffff", fg="#555555", 
-                      borderwidth=0, 
-                      highlightthickness=0)
+        # btn_start = tk.Button(root, text="Volver a iniciar", command=start, 
+        #               font=("Arial", 12, "bold"), 
+        #               bg="#ffffff", fg="#555555", 
+        #               borderwidth=0, 
+        #               highlightthickness=0)
 
-        btn_start.grid(column=0, row=2, pady=10)    
+        # btn_start.grid(column=0, row=2, pady=10)    
 
 
     elif respuesta == "cuestionario":
