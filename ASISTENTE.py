@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import threading
 import queue
 import json
+import random
 
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
@@ -26,8 +27,9 @@ image = Image.open("IMG/iaBackground.png")
 image = image.resize((790, 450))
 photo = ImageTk.PhotoImage(image)
 image_label = tk.Label(root, image = photo)
-image_label.config(bg="#262626")
-image_label.grid(column=0, row=0, pady=20)
+
+print((root.winfo_reqwidth()))
+image_label.grid(column=0, row=0, pady=20, padx=((800 - photo.width())/ 2))
 image_queue.put(photo)
 
 lbl_text = tk.Label(root, text="Haz click en el boton 'iniciar' para empezar", font=("Arial", 13, "bold"))
@@ -74,29 +76,29 @@ def main_thread_logic():
             execute_start_logic()
 
 def execute_start_logic():
-    send_text_to_ui("Bienvenid@")
+    # send_text_to_ui("Bienvenid@")
     btn_start.grid_forget()  
-    texto_a_audio("Bienvenido")
-    send_text_to_ui("¿Comó te llamas?")
-    texto_a_audio("¿Comó te llamas?")
+    # texto_a_audio("Bienvenido")
+    # send_text_to_ui("¿Comó te llamas?")
+    # texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
-    nombre = enviar_voz()
-    mic_label.grid_forget()
-    send_text_to_ui("Hola " + nombre)
-    texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    texto_a_audio(datos["bienvenida"])
-    texto_a_audio(
-        "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
-            nombre))
-    #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
-    send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
-    texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
-    texto_a_audio(
-        "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
-    send_text_to_ui("¿Qué opción eliges?")
+    # nombre = enviar_voz()
+    # mic_label.grid_forget()
+    # send_text_to_ui("Hola " + nombre)
+    # texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
+    # texto_a_audio(datos["bienvenida"])
+    # texto_a_audio(
+    #     "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
+    #         nombre))
+    # #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
+    # send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
+    # texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
+    # texto_a_audio(
+    #     "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+    # send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
-    respuesta = enviar_voz()
+    respuesta = "juegos"
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
@@ -542,8 +544,81 @@ def execute_start_logic():
 
     elif respuesta == "juegos":
         print ("juegos")
+        image = Image.open("IMG/ahorcado1.jpg")
+        image = image.resize((200, 300))
+        photo = ImageTk.PhotoImage(image)
+        image_queue.put(photo)
+
+        send_text_to_ui("Empezamos con el juego")
+        texto_a_audio("Empezamos con el juego")
+
+        
+        # 0 palabra, 1 cadena, 2 contador de errores
+        palabra_elegida = datos['ahorcado'][random.randint(0, len(datos['ahorcado']) - 1)]
+        ahorcado_info = [palabra_elegida, texto_ahorcado(palabra_elegida), 0]
+        send_text_to_ui(ahorcado_info[1])
+
+        while True:
+            texto_a_audio("Elige una letra")
+            letra = enviar_voz()
+
+            print("se obtuvo la letra: " + letra[0])
+            
+            send_text_to_ui(ahorcado_info[1])
+            yalas = set()
+
+            yala = corroborar_letra(ahorcado_info, letra[0], yalas)
+            if yala:
+                texto_a_audio("Ya elegiste esa palabra")
+            else:
+                print("mi nueva cadena es")
+                print(ahorcado_info[1])
+                send_text_to_ui(ahorcado_info[1])
+
+                actualizaar_imagen_ahorcado(ahorcado_info[2])
+
+                if ahorcado_info[2] == 6:
+                    texto_a_audio("perdiste")
+                    break
+
     else:
         print("no elegiste nada")
+
+def actualizaar_imagen_ahorcado(contador): 
+    nombre = "IMG/ahorcado" + str(contador + 1) + ".jpg"
+    image = Image.open(nombre)
+    image = image.resize((200, 300))
+    photo = ImageTk.PhotoImage(image)
+    image_queue.put(photo)
+
+def texto_ahorcado(palabra):
+    cadena = ""
+
+    for i in range(len(palabra) - 1):
+        cadena += "_ "
+    
+    cadena += "_"
+
+    return cadena
+
+def corroborar_letra(info, letra, yalas):
+    if letra in yalas:
+        return True
+    elif letra in info[0]:
+        mensaje = "la letra:" + letra + " si se encuentra en la palabra"
+        print(mensaje)
+        yalas.add(letra)
+        actualizar_cadena(info, letra)
+    else:
+        yalas.add(letra)
+        info[2] = info[2] + 1
+
+    return False
+
+def actualizar_cadena(info, letra):
+    for i in range(len(info[0])):
+        if info[0][i] == letra:
+            info[1] = info[1][:(2 * i)] + letra + info[1][(2 * i + 1):]
 
 def cond(opcion):
                 if opcion == "no":
@@ -573,8 +648,15 @@ def update_ui():
         pass
     
     try:
+        global photo
         photo = image_queue.get_nowait()     
-        image_label.config(image = photo)        
+        image_label.config(image = photo)
+        print("de la ventana")
+        print(root.winfo_reqwidth())
+        print(photo.width())
+        
+        image_label.grid(column=0, row=0, pady=20, padx=((800 - photo.width())/ 2))
+
 
 
     except queue.Empty: 

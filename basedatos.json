@@ -206,5 +206,10 @@
     ],
 
     "P10_RESPUESTA": "c",
-    "P10_JUSTIFICACION": "Las colas se usan en SO para gestionar procesos o hilos."
+    "P10_JUSTIFICACION": "Las colas se usan en SO para gestionar procesos o hilos.",
+
+    "ahorcado": [
+        "papanatas",
+        "gaaaaa"
+    ]
 }
