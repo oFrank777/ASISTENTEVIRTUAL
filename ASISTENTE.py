@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import threading
 import queue
 import json
+import random
 
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
@@ -413,17 +414,20 @@ def execute_start_logic():
 
         
         # 0 palabra, 1 cadena, 2 contador de errores
-        ahorcado_info = [datos['ahorcado'][0], texto_ahorcado(datos['ahorcado'][0]), 0]
+        palabra_elegida = datos['ahorcado'][random.randint(0, len(datos['ahorcado']) - 1)]
+        ahorcado_info = [palabra_elegida, texto_ahorcado(palabra_elegida), 0]
         send_text_to_ui(ahorcado_info[1])
 
         while True:
             texto_a_audio("Elige una letra")
             letra = enviar_voz()
+
+            print("se obtuvo la letra: " + letra[0])
             
             send_text_to_ui(ahorcado_info[1])
             yalas = set()
 
-            yala = corroborar_letra(ahorcado_info, letra, yalas)
+            yala = corroborar_letra(ahorcado_info, letra[0], yalas)
             if yala:
                 texto_a_audio("Ya elegiste esa palabra")
             else:
@@ -431,11 +435,21 @@ def execute_start_logic():
                 print(ahorcado_info[1])
                 send_text_to_ui(ahorcado_info[1])
 
+                actualizaar_imagen_ahorcado(ahorcado_info[2])
 
+                if ahorcado_info[2] == 6:
+                    texto_a_audio("perdiste")
+                    break
 
     else:
         print("no elegiste nada")
 
+def actualizaar_imagen_ahorcado(contador): 
+    nombre = "IMG/ahorcado" + str(contador + 1) + ".jpg"
+    image = Image.open(nombre)
+    image = image.resize((200, 300))
+    photo = ImageTk.PhotoImage(image)
+    image_queue.put(photo)
 
 def texto_ahorcado(palabra):
     cadena = ""
