@@ -814,5 +814,11 @@ def on_leave(e):
 btn_start.bind("<Enter>", on_enter)
 btn_start.bind("<Leave>", on_leave)
 
+lbl_track=tk.Label(root, text=" ", font=("Arial", 13, "bold"))
+lbl_text.config(bg="#262626",
+                fg="#fefae4", # color mostaza
+                font=("Oswald", 20, "bold")) 
+lbl_text.grid(column=0, row=2)
+
 # Run the main loop directly
 root.mainloop()
