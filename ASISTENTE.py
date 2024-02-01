@@ -156,7 +156,7 @@ def execute_start_logic():
     send_text_to_ui("¿Comó te llamas?")
     texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
-    nombre = enviar_voz()
+    nombre = "oal chavo"
     mic_label.grid_forget()
     send_text_to_ui("Hola " + nombre)
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
@@ -175,7 +175,7 @@ def execute_start_logic():
         send_text_to_ui("¿Qué opción eliges?")
 
         mic_label.grid(column=0, row=2, pady=10)  
-        respuesta = enviar_voz()
+        respuesta = "cuestionario"
         mic_label.grid_forget()
 
         if respuesta == "aprendizaje":
@@ -325,7 +325,9 @@ def execute_start_logic():
 
                     while True:
 
+                        mic_label.grid(column=0, row=2, pady=10)
                         respuesta = enviar_voz()
+                        mic_label.grid_forget()
 
                         if respuesta == "no":
                             break
@@ -406,7 +408,9 @@ def execute_start_logic():
 
                     while True:
 
+                        mic_label.grid(column=0, row=2, pady=10)
                         respuesta = enviar_voz()
+                        mic_label.grid_forget()
 
                         if respuesta == "no":
                             break
@@ -490,19 +494,29 @@ def execute_start_logic():
             send_text_to_ui("Elegiste la opcion CUESTIONARIO.")
             texto_a_audio("Elegiste la opcion CUESTIONARIO.")
             texto_a_audio("Se te realizaran 10 preguntas y al final se te mostrara tu puntaje en conjunto de las justificaciones de las respuestas erroneas.")
-            send_text_to_ui("¿Empezamos?\n1) Si 2) No")
+            send_text_to_ui("¿Empezamos?\n1) Claro 2) No")
             texto_a_audio("¿Estas listo?")
 
+            mic_label.grid(column=0, row=2, pady=10)
             respuesta = enviar_voz()
-            if respuesta == "si":
+            mic_label.grid_forget()
+
+            if respuesta == "claro":
                 tus_respuestas = []
 
-                for i in range(10):
+                send_text_to_ui("Responde con una palabra que inicie con la letra de la opcion que quieras elejir")
+
+                for i in range(3):
                     preguntas(i+1)
                     respuesta = enviar_voz()
                     ruta = "P"+str(i+1)+"_RESPUESTA"                
-                    comp(datos[ruta], respuesta)
+                    comp(datos[ruta], respuesta[0])
                 
+                image = Image.open("IMG/cuestionario.png")
+                image = image.resize((790, 450))
+                photo = ImageTk.PhotoImage(image)
+                image_queue.put(photo)
+
                 send_text_to_ui("Terminamos, veamos tus resultados...")
                 texto_a_audio("Terminamos, veamos tus resultados...")
 
@@ -543,13 +557,13 @@ def execute_start_logic():
                             msg = "debido a que" + datos["P"+str(i+1)+"_JUSTIFICACION"]
                             texto_a_audio(msg)
 
-            image = Image.open("IMG/cuestionario2.jpg")
+            image = Image.open("IMG/cuestionario.png")
             image = image.resize((790, 450))
             photo = ImageTk.PhotoImage(image)
             image_queue.put(photo)
 
+            send_text_to_ui("Bueno, eso es todo aqui, espero vuelvas para retar tus conocimientos.")
             texto_a_audio("Bueno, eso es todo aqui en cuestioanrio, espero vuelvas para retar tus conocimientos.")
-            send_text_to_ui("Bueno, eso es todo aqui en cuestioanrio, espero vuelvas para retar tus conocimientos.")
 
         elif respuesta == "juegos":
             image = Image.open("IMG/juegos.png")
