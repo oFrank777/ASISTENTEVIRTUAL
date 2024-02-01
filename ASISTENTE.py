@@ -20,6 +20,80 @@ root.resizable(False, False) # deshabilita redimensionamiento
 root.maxsize(800, 600) # establece tamaño máximo
 root.minsize(800, 600)
 
+# Dimensiones del tablero
+WIDTH = 400  
+HEIGHT = 400
+
+# Tamaño de las celdas 
+CELL_SIZE = 25
+
+class Grid:
+    def __init__(self, canvas, width, height, cell_size):
+        self.canvas = canvas
+        self.WIDTH = width
+        self.HEIGHT = height
+        self.CELL_SIZE = cell_size
+
+        x1, y1 = random.randint(0, 15), random.randint(0, 15)
+        x2, y2 = random.randint(0, 15), random.randint(0, 15)
+        self.user_cell = (x1, y1)
+        self.goal_cell = (x2, y2)
+
+        self.obstacle_cells = []
+
+        for _ in range(90):
+            x3, y3 = random.randint(0, 15), random.randint(0, 15)
+
+            if (x3, y3) != (x2, y2) and (x3, y3) != (x1, y1):
+                self.obstacle_cells.append((x3, y3))
+
+        self.cells = []
+        self.initialize_cells()
+        self.draw_cells()
+        
+    def initialize_cells(self):
+        for row in range(20):
+            for col in range(20):
+                x1 = col * CELL_SIZE
+                y1 = row * CELL_SIZE
+                x2 = x1 + CELL_SIZE
+                y2 = y1 + CELL_SIZE
+
+                fill_color = "white"
+                if (row, col) == self.user_cell:
+                    fill_color = "green"
+                elif (row, col) == self.goal_cell:
+                    fill_color = "red"
+                elif (row, col) in self.obstacle_cells:
+                    fill_color = "black"
+
+                cell = self.canvas.create_rectangle(x1, y1, x2, y2, fill=fill_color)
+                self.cells.append(cell)
+
+    def draw_cells(self):
+        for cell_id in self.cells:
+            self.canvas.delete(cell_id)  # Borrar celdas antiguas
+
+        self.initialize_cells()
+
+    def move_up(self, evt):
+        self.try_move(self.user_cell[0] - 1, self.user_cell[1])
+
+    def move_down(self, evt):
+        self.try_move(self.user_cell[0] + 1, self.user_cell[1])
+
+    def move_left(self, evt):
+        self.try_move(self.user_cell[0], self.user_cell[1] - 1)
+
+    def move_right(self, evt):
+        self.try_move(self.user_cell[0], self.user_cell[1] + 1)
+
+    def try_move(self, row, col):
+        if (row >= 0 and row < 20 and col >= 0 and col < 20 and
+                (row, col) not in self.obstacle_cells):
+            self.user_cell = (row, col)
+            self.draw_cells()
+
 # Initialize images/widgets globally
 image_queue = queue.Queue()
 
@@ -545,49 +619,92 @@ def execute_start_logic():
 
 
     elif respuesta == "juegos":
-        print ("juegos")
-        image = Image.open("IMG/ahorcado1.jpg")
-        image = image.resize((200, 300))
+        image = Image.open("IMG/perifericos.jpg")
+        image = image.resize((790, 450))
         photo = ImageTk.PhotoImage(image)
         image_queue.put(photo)
 
-        send_text_to_ui("Empezamos con el juego")
-        texto_a_audio("Empezamos con el juego")
-
+        send_text_to_ui("Elegiste la opcion JUEGOS.")
+        texto_a_audio("Elegiste la opcion JUEGOS.")
+        send_text_to_ui("1) Laberinto de instrucciones 2) Ahorcados")
+        texto_a_audio("Por el momento tenemos 2 juegos bastante divertidos, ¿cual te gustaria probar?")
         
-        # 0 palabra, 1 cadena, 2 contador de errores
-        palabra_elegida = datos['ahorcado'][random.randint(0, len(datos['ahorcado']) - 1)]
-        ahorcado_info = [palabra_elegida, texto_ahorcado(palabra_elegida), 0]
-        send_text_to_ui(ahorcado_info[1])
+        respuesta = "laberinto de instrucciones"
 
-        while True:
-            texto_a_audio("Elige una letra")
-            mic_label.grid(column=0, row=2, pady=10)  
-            letra = enviar_voz()            
-            mic_label.grid_forget()
-            
+        if respuesta == "laberinto de instrucciones":
 
-            print("se obtuvo la letra: " + letra[0])
-            
-            send_text_to_ui(ahorcado_info[1])
-            yalas = set()
+            image = Image.open("IMG/fondolaberinto.jpg")
+            image = image.resize((790, 450))
+            photo = ImageTk.PhotoImage(image)
+            image_queue.put(photo)
 
-            yala = corroborar_letra(ahorcado_info, letra[0], yalas)
-            if yala:
-                texto_a_audio("Ya elegiste esa palabra")
-            else:
-                print("mi nueva cadena es")
-                print(ahorcado_info[1])
-                send_text_to_ui(ahorcado_info[1])
+            canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT)
+            canvas.grid(column=0, row=0, pady=20)  # Posiciona el canvas en la columna 1
 
-                actualizaar_imagen_ahorcado(ahorcado_info[2])
+            grid = Grid(canvas, WIDTH, HEIGHT, CELL_SIZE)
 
-                if ahorcado_info[2] == 6:
-                    texto_a_audio("perdiste")
+            while True:
+                send_text_to_ui("Escuchando tus indicaciones...")
+                texto_a_audio("Escuchando tus indicaciones...")                
+                respuesta = enviar_voz()
+                if respuesta == "arriba":
+                    grid.move_up(None)
+                elif respuesta == "abajo":
+                    grid.move_down(None)
+                elif respuesta == "derecha":
+                    grid.move_right(None)
+                elif respuesta == "izquierda":
+                    grid.move_left(None)
+                else:
+                    texto_a_audio("No es una dirección válida, dime una dirección válida.")
+
+                if grid.user_cell == grid.goal_cell:
+                    texto_a_audio("¡Felicidades, llegaste a tu destino!")
                     break
+        
+        elif respuesta == "ahorcados":
 
-    else:
-        print("no elegiste nada")
+            image = Image.open("IMG/ahorcado1.jpg")
+            image = image.resize((200, 300))
+            photo = ImageTk.PhotoImage(image)
+            image_queue.put(photo)
+
+            send_text_to_ui("Empezamos con el juego")
+            texto_a_audio("Empezamos con el juego")
+
+            
+            # 0 palabra, 1 cadena, 2 contador de errores
+            palabra_elegida = datos['ahorcado'][random.randint(0, len(datos['ahorcado']) - 1)]
+            ahorcado_info = [palabra_elegida, texto_ahorcado(palabra_elegida), 0]
+            send_text_to_ui(ahorcado_info[1])
+
+            while True:
+                texto_a_audio("Elige una letra")
+                mic_label.grid(column=0, row=2, pady=10)  
+                letra = enviar_voz()            
+                mic_label.grid_forget()
+                
+
+                print("se obtuvo la letra: " + letra[0])
+                
+                send_text_to_ui(ahorcado_info[1])
+                yalas = set()
+
+                yala = corroborar_letra(ahorcado_info, letra[0], yalas)
+                if yala:
+                    texto_a_audio("Ya elegiste esa palabra")
+                else:
+                    print("mi nueva cadena es")
+                    print(ahorcado_info[1])
+                    send_text_to_ui(ahorcado_info[1])
+
+                    actualizaar_imagen_ahorcado(ahorcado_info[2])
+
+                    if ahorcado_info[2] == 6:
+                        texto_a_audio("perdiste")
+                        break
+
+    
 
 def actualizaar_imagen_ahorcado(contador): 
     nombre = "IMG/ahorcado" + str(contador + 1) + ".jpg"
