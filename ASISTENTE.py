@@ -123,7 +123,7 @@ def texto_a_audio(text):
     engine.say(text)
     engine.runAndWait()
 
-def capturar_voz(reconocer, microfono, tiempo_ruido=0.1):
+def capturar_voz(reconocer, microfono, tiempo_ruido=0.5):
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration=tiempo_ruido)
         print("Escuchando...")
@@ -493,14 +493,13 @@ def execute_start_logic():
             send_text_to_ui("¿Empezamos?\n1) Si 2) No")
             texto_a_audio("¿Estas listo?")
 
-            respuesta = "si"
-
+            respuesta = enviar_voz()
             if respuesta == "si":
                 tus_respuestas = []
 
                 for i in range(10):
                     preguntas(i+1)
-                    respuesta = "a"
+                    respuesta = enviar_voz()
                     ruta = "P"+str(i+1)+"_RESPUESTA"                
                     comp(datos[ruta], respuesta)
                 
@@ -661,6 +660,9 @@ def execute_start_logic():
             send_text_to_ui("Ha sido un gusto poder ayudarte, regresa pronto.")
             texto_a_audio("Ha sido un gusto poder ayudarte, regresa pronto.")
             break
+
+    root.quit()
+    root.destroy()
 
 def preguntas(i):    
     ruta = "IMG/P"+str(i)+".jpg"
