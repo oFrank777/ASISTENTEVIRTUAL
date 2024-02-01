@@ -156,7 +156,7 @@ def execute_start_logic():
     send_text_to_ui("¿Comó te llamas?")
     texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
-    nombre = "oal chavo"
+    nombre = enviar_voz()
     mic_label.grid_forget()
     send_text_to_ui("Hola " + nombre)
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
@@ -176,7 +176,7 @@ def execute_start_logic():
         send_text_to_ui("¿Qué opción eliges?")
 
         mic_label.grid(column=0, row=2, pady=10)  
-        respuesta = "cuestionario"
+        respuesta = enviar_voz()
         mic_label.grid_forget()
 
         if respuesta == "aprendizaje":
