@@ -503,122 +503,16 @@ def execute_start_logic():
 
         if respuesta == "si":
             tus_respuestas = []
-            image = Image.open("IMG/P1.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 01\nElige sabiamente...")
-            texto_a_audio(datos['PE_1'])
 
-            respuesta = enviar_voz()
-
-            comp(datos['P1_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P2.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 02\nElige sabiamente...")
-            texto_a_audio(datos['PE_2'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P2_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P3.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 03\nElige sabiamente...")
-            texto_a_audio(datos['PE_3'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P3_RESPUESTA'], respuesta)
+            for i in range(10):
+                preguntas(i+1)
+                respuesta = "a"
+                ruta = "P"+str(i+1)+"_RESPUESTA"                
+                comp(datos[ruta], respuesta)
             
-            image = Image.open("IMG/P4.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 04\nElige sabiamente...")
-            texto_a_audio(datos['PE_4'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P4_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P5.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 05\nElige sabiamente...")
-            texto_a_audio(datos['PE_5'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P5_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P6.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 06\nElige sabiamente...")
-            texto_a_audio(datos['PE_6'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P6_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P7.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 07\nElige sabiamente...")
-            texto_a_audio(datos['PE_7'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P7_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P8.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 08\nElige sabiamente...")
-            texto_a_audio(datos['PE_8'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P8_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P9.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 09\nElige sabiamente...")
-            texto_a_audio(datos['PE_9'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P9_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P10.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 10\nElige sabiamente...")
-            texto_a_audio(datos['PE_10'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P10_RESPUESTA'], respuesta)
-
             send_text_to_ui("Terminamos, veamos tus resultados...")
             texto_a_audio("Terminamos, veamos tus resultados...")
 
-            t1 = "P"
-            t2 = "_RESPUESTA"
-            t3 = "_JUSTIFICACION"
             calificacion = 0
 
             for punto in tus_respuestas:
@@ -637,12 +531,11 @@ def execute_start_logic():
                     image = image.resize((790, 450))
                     photo = ImageTk.PhotoImage(image)
                     image_queue.put(photo)
-                    msg = "Pregunta " + str(i+1) + "\nRespuesta Correcta:" + datos[t1+str(i+1)+t2]
+                    msg = "Pregunta " + str(i+1) + "\nRespuesta Correcta:" + datos["P"+str(i+1)+"_RESPUESTA"]
                     send_text_to_ui(msg)
                     texto_a_audio(msg)
-                    msg = "debido a que" + datos[t1+str(i+1)+t3]
+                    msg = "debido a que" + datos["P"+str(i+1)+"_JUSTIFICACION"]
                     texto_a_audio(msg)
-
 
     elif respuesta == "juegos":
         image = Image.open("IMG/perifericos.jpg")
@@ -738,7 +631,16 @@ def execute_start_logic():
                 texto_a_audio("perdiste")
                 break
 
-    
+def preguntas(i):    
+    ruta = "IMG/P"+str(i)+".jpg"
+    image = Image.open(ruta)
+    image = image.resize((790, 450))
+    photo = ImageTk.PhotoImage(image)
+    image_queue.put(photo)
+
+    respuesta = "PE_"+str(i)
+    send_text_to_ui("Pregunta 0"+str(i)+"\nElige sabiamente...")
+    texto_a_audio(datos[respuesta])
 
 def actualizaar_imagen_ahorcado(contador):
     nombre = "IMG/ahorcado" + str(contador + 1) + ".jpg"
