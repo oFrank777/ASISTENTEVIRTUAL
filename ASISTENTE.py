@@ -20,6 +20,80 @@ root.resizable(False, False) # deshabilita redimensionamiento
 root.maxsize(800, 600) # establece tamaño máximo
 root.minsize(800, 600)
 
+# Dimensiones del tablero
+WIDTH = 400  
+HEIGHT = 400
+
+# Tamaño de las celdas 
+CELL_SIZE = 25
+
+class Grid:
+    def __init__(self, canvas, width, height, cell_size):
+        self.canvas = canvas
+        self.WIDTH = width
+        self.HEIGHT = height
+        self.CELL_SIZE = cell_size
+
+        x1, y1 = random.randint(0, 15), random.randint(0, 15)
+        x2, y2 = random.randint(0, 15), random.randint(0, 15)
+        self.user_cell = (x1, y1)
+        self.goal_cell = (x2, y2)
+
+        self.obstacle_cells = []
+
+        for _ in range(90):
+            x3, y3 = random.randint(0, 15), random.randint(0, 15)
+
+            if (x3, y3) != (x2, y2) and (x3, y3) != (x1, y1):
+                self.obstacle_cells.append((x3, y3))
+
+        self.cells = []
+        self.initialize_cells()
+        self.draw_cells()
+        
+    def initialize_cells(self):
+        for row in range(20):
+            for col in range(20):
+                x1 = col * CELL_SIZE
+                y1 = row * CELL_SIZE
+                x2 = x1 + CELL_SIZE
+                y2 = y1 + CELL_SIZE
+
+                fill_color = "white"
+                if (row, col) == self.user_cell:
+                    fill_color = "green"
+                elif (row, col) == self.goal_cell:
+                    fill_color = "red"
+                elif (row, col) in self.obstacle_cells:
+                    fill_color = "black"
+
+                cell = self.canvas.create_rectangle(x1, y1, x2, y2, fill=fill_color)
+                self.cells.append(cell)
+
+    def draw_cells(self):
+        for cell_id in self.cells:
+            self.canvas.delete(cell_id)  # Borrar celdas antiguas
+
+        self.initialize_cells()
+
+    def move_up(self, evt):
+        self.try_move(self.user_cell[0] - 1, self.user_cell[1])
+
+    def move_down(self, evt):
+        self.try_move(self.user_cell[0] + 1, self.user_cell[1])
+
+    def move_left(self, evt):
+        self.try_move(self.user_cell[0], self.user_cell[1] - 1)
+
+    def move_right(self, evt):
+        self.try_move(self.user_cell[0], self.user_cell[1] + 1)
+
+    def try_move(self, row, col):
+        if (row >= 0 and row < 20 and col >= 0 and col < 20 and
+                (row, col) not in self.obstacle_cells):
+            self.user_cell = (row, col)
+            self.draw_cells()
+
 # Initialize images/widgets globally
 image_queue = queue.Queue()
 
@@ -100,7 +174,24 @@ def execute_start_logic():
     # send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)
-    respuesta = "juegos"
+    nombre = "Jorge"
+    mic_label.grid_forget()
+    send_text_to_ui("Hola " + nombre)
+    texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
+    texto_a_audio(datos["bienvenida"])
+    texto_a_audio(
+        "{} ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
+            nombre))
+    #WHILE PARA REPETIR O CAMBIAR DE OPCIONES
+    send_text_to_ui("OPCIONES: 1) Aprendizaje   2) Cuestionario    3) Juegos")
+    texto_a_audio("Aprendizaje. Cuestionario. Juegos.")
+    texto_a_audio(
+        "La opción Aprendizaje es donde podrás aprender todo con respecto a Programación. La opción Cuestionario es donde podrás poner en práctica lo que aprendiste mediante preguntas. Y por último, la tercer opción, es Juegos, donde también podrás poner en acción lo que aprendiste jugando.")
+    texto_a_audio("¿Qué opción eliges?")
+    send_text_to_ui("¿Qué opción eliges?")
+
+    mic_label.grid(column=0, row=2, pady=10)  
+    respuesta = "cuestionario"
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
@@ -419,7 +510,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 01\nElige sabiamente...")
             texto_a_audio(datos['PE_1'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P1_RESPUESTA'], respuesta)
 
@@ -430,7 +521,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 02\nElige sabiamente...")
             texto_a_audio(datos['PE_2'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P2_RESPUESTA'], respuesta)
 
@@ -441,87 +532,11 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 03\nElige sabiamente...")
             texto_a_audio(datos['PE_3'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P3_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P4.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 04\nElige sabiamente...")
-            texto_a_audio(datos['PE_4'], respuesta)
-
-            respuesta = enviar_voz()
-
-            comp(datos['P4_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P5.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 05\nElige sabiamente...")
-            texto_a_audio(datos['PE_5'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P5_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P6.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 06\nElige sabiamente...")
-            texto_a_audio(datos['PE_6'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P6_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P7.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 07\nElige sabiamente...")
-            texto_a_audio(datos['PE_7'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P7_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P8.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 08\nElige sabiamente...")
-            texto_a_audio(datos['PE_8'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P8_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P9.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 09\nElige sabiamente...")
-            texto_a_audio(datos['PE_9'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P9_RESPUESTA'], respuesta)
-
-            image = Image.open("IMG/P10.jpg")
-            image = image.resize((790, 450))
-            photo = ImageTk.PhotoImage(image)
-            image_queue.put(photo)
-            send_text_to_ui("Pregunta 10\nElige sabiamente...")
-            texto_a_audio(datos['PE_10'])
-
-            respuesta = enviar_voz()
-
-            comp(datos['P10_RESPUESTA'], respuesta)
-
+            
+            
             send_text_to_ui("Terminamos, veamos tus resultados...")
             texto_a_audio("Terminamos, veamos tus resultados...")
 
@@ -532,27 +547,80 @@ def execute_start_logic():
 
             for punto in tus_respuestas:
                 if punto == 1:
-                    calificacion + 1
+                    calificacion = calificacion + 1
 
-            send_text_to_ui("Tu puntuacion ha sido de ", calificacion, " sobre 10.")
-            texto_a_audio("Tu puntuacion ha sido de ", calificacion, " sobre 10.")
+            msg = "Tu puntuacion ha sido de "+ str(calificacion) + " sobre 10."
+
+            send_text_to_ui(msg)
+            texto_a_audio(msg)
 
             for i, elemento in enumerate(tus_respuestas):
-                if elemento == 1:
-                    send_text_to_ui("Pregunta ", i+1, "\nRespuesta Correcta:", datos[t1+str(i+1)+t2])
-                    texto_a_audio("Pregunta ", i+1, "\nRespuesta Correcta:", datos[t1+str(i+1)+t2])
-                    texto_a_audio("debido a que", datos[t1+str(i+1)+t3])
+                if elemento == 0:
+                    ruta = "IMG/P"+str(i+1)+".jpg"
+                    image = Image.open(ruta)
+                    image = image.resize((790, 450))
+                    photo = ImageTk.PhotoImage(image)
+                    image_queue.put(photo)
+                    msg = "Pregunta " + str(i+1) + "\nRespuesta Correcta:" + datos[t1+str(i+1)+t2]
+                    send_text_to_ui(msg)
+                    texto_a_audio(msg)
+                    msg = "debido a que" + datos[t1+str(i+1)+t3]
+                    texto_a_audio(msg)
 
 
     elif respuesta == "juegos":
-        print ("juegos")
-        image = Image.open("IMG/ahorcado1.jpg")
-        image = image.resize((200, 300))
+        image = Image.open("IMG/perifericos.jpg")
+        image = image.resize((790, 450))
         photo = ImageTk.PhotoImage(image)
         image_queue.put(photo)
 
-        send_text_to_ui("Empezamos con el juego")
-        texto_a_audio("Empezamos con el juego")
+        send_text_to_ui("Elegiste la opcion JUEGOS.")
+        texto_a_audio("Elegiste la opcion JUEGOS.")
+        send_text_to_ui("1) Laberinto de instrucciones 2) Ahorcados")
+        texto_a_audio("Por el momento tenemos 2 juegos bastante divertidos, ¿cual te gustaria probar?")
+        
+        respuesta = "laberinto de instrucciones"
+
+        if respuesta == "laberinto de instrucciones":
+
+            image = Image.open("IMG/fondolaberinto.jpg")
+            image = image.resize((790, 450))
+            photo = ImageTk.PhotoImage(image)
+            image_queue.put(photo)
+
+            canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT)
+            canvas.grid(column=0, row=0, pady=20)  # Posiciona el canvas en la columna 1
+
+            grid = Grid(canvas, WIDTH, HEIGHT, CELL_SIZE)
+
+            while True:
+                send_text_to_ui("Escuchando tus indicaciones...")
+                texto_a_audio("Escuchando tus indicaciones...")                
+                respuesta = enviar_voz()
+                if respuesta == "arriba":
+                    grid.move_up(None)
+                elif respuesta == "abajo":
+                    grid.move_down(None)
+                elif respuesta == "derecha":
+                    grid.move_right(None)
+                elif respuesta == "izquierda":
+                    grid.move_left(None)
+                else:
+                    texto_a_audio("No es una dirección válida, dime una dirección válida.")
+
+                if grid.user_cell == grid.goal_cell:
+                    texto_a_audio("¡Felicidades, llegaste a tu destino!")
+                    break
+        
+        elif respuesta == "ahorcados":
+
+            image = Image.open("IMG/ahorcado1.jpg")
+            image = image.resize((200, 300))
+            photo = ImageTk.PhotoImage(image)
+            image_queue.put(photo)
+
+            send_text_to_ui("Empezamos con el juego")
+            texto_a_audio("Empezamos con el juego")
 
         keys = list(datos["ahorcado"].keys())  
 
@@ -589,13 +657,12 @@ def execute_start_logic():
 
                 actualizaar_imagen_ahorcado(ahorcado_info[2])
 
-                if ahorcado_info[2] == 6:
-                    lbl_track.config(text="PERDISTE")
-                    texto_a_audio("perdiste")
-                    break
+            if ahorcado_info[2] == 6:
+                lbl_track.config(text="PERDISTE")
+                texto_a_audio("perdiste")
+                break
 
-    else:
-        print("no elegiste nada")
+    
 
 def actualizaar_imagen_ahorcado(contador):
     nombre = "IMG/ahorcado" + str(contador + 1) + ".jpg"
