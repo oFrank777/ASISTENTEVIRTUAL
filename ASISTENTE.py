@@ -562,7 +562,10 @@ def execute_start_logic():
 
         while True:
             texto_a_audio("Elige una letra")
-            letra = enviar_voz()
+            mic_label.grid(column=0, row=2, pady=10)  
+            letra = enviar_voz()            
+            mic_label.grid_forget()
+            
 
             print("se obtuvo la letra: " + letra[0])
             
@@ -674,8 +677,8 @@ main_thread = threading.Thread(target=main_thread_logic)
 main_thread.daemon = True
 main_thread.start()
 
-mic_image = ImageTk.PhotoImage(Image.open("IMG/mic_icon.png").resize((40, 40)))
-mic_label = tk.Label(root, image=mic_image, bd=0, width=40, height=40)
+mic_image = ImageTk.PhotoImage(Image.open("IMG/mic_icon.png").resize((45, 45)))
+mic_label = tk.Label(root, image=mic_image, bd=0, width=45, height=45)
 
 btn_start = tk.Button(root, text="Iniciar", command=start, 
                       font=("Arial", 12, "bold"), 
