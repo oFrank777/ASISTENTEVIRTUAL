@@ -14,6 +14,10 @@ root = tk.Tk()
 root.iconbitmap("IMG/icon.ico")
 root.geometry("800x600")
 root.title("ASISTENTE VIRTUAL")
+root.config(bg="#262626")
+root.resizable(False, False) # deshabilita redimensionamiento
+root.maxsize(800, 600) # establece tamaño máximo
+root.minsize(800, 600)
 
 # Initialize images/widgets globally
 image_queue = queue.Queue()
@@ -22,7 +26,8 @@ image = Image.open("IMG/iaBackground.png")
 image = image.resize((790, 450))
 photo = ImageTk.PhotoImage(image)
 image_label = tk.Label(root, image = photo)
-image_label.grid(column=0, row=0, pady=20)
+print((root.winfo_reqwidth()))
+image_label.grid(column=0, row=0, pady=20, padx=((800 - photo.width())/ 2))
 image_queue.put(photo)
 
 lbl_text = tk.Label(root, text="Haz click en el boton 'iniciar' para empezar", font=("Arial", 13, "bold"))
@@ -403,43 +408,63 @@ def execute_start_logic():
         photo = ImageTk.PhotoImage(image)
         image_queue.put(photo)
 
-        send_text_to_ui("Terminamos, veamos tus resultados...")
-        texto_a_audio("Terminamos, veamos tus resultados...")
+        send_text_to_ui("Empezamos con el juego")
+        texto_a_audio("Empezamos con el juego")
 
-        image = Image.open("IMG/ahorcado2.jpg")
-        image = image.resize((200, 300))
-        photo = ImageTk.PhotoImage(image)
-        image_queue.put(photo)
-
-        image = Image.open("IMG/ahorcado3.jpg")
-        image = image.resize((200, 300))
-        photo = ImageTk.PhotoImage(image)
-        image_queue.put(photo)
-
-        image = Image.open("IMG/ahorcado4.jpg")
-        image = image.resize((200, 300))
-        photo = ImageTk.PhotoImage(image)
-        image_queue.put(photo)
-
-        image = Image.open("IMG/ahorcado5.jpg")
-        image = image.resize((200, 300))
-        photo = ImageTk.PhotoImage(image)
-        image_queue.put(photo)
-
-        image = Image.open("IMG/ahorcado6.jpg")
-        image = image.resize((200, 300))
-        photo = ImageTk.PhotoImage(image)
-        image_queue.put(photo)
-
-        image = Image.open("IMG/ahorcado7.jpg")
-        image = image.resize((200, 300))
-        photo = ImageTk.PhotoImage(image)
-        image_queue.put(photo)
         
+        # 0 palabra, 1 cadena, 2 contador de errores
+        ahorcado_info = [datos['ahorcado'][0], texto_ahorcado(datos['ahorcado'][0]), 0]
+        send_text_to_ui(ahorcado_info[1])
+
+        while True:
+            texto_a_audio("Elige una letra")
+            letra = enviar_voz()
+            
+            send_text_to_ui(ahorcado_info[1])
+            yalas = set()
+
+            yala = corroborar_letra(ahorcado_info, letra, yalas)
+            if yala:
+                texto_a_audio("Ya elegiste esa palabra")
+            else:
+                print("mi nueva cadena es")
+                print(ahorcado_info[1])
+                send_text_to_ui(ahorcado_info[1])
+
 
 
     else:
         print("no elegiste nada")
+
+
+def texto_ahorcado(palabra):
+    cadena = ""
+
+    for i in range(len(palabra) - 1):
+        cadena += "_ "
+    
+    cadena += "_"
+
+    return cadena
+
+def corroborar_letra(info, letra, yalas):
+    if letra in yalas:
+        return True
+    elif letra in info[0]:
+        mensaje = "la letra:" + letra + " si se encuentra en la palabra"
+        print(mensaje)
+        yalas.add(letra)
+        actualizar_cadena(info, letra)
+    else:
+        yalas.add(letra)
+        info[2] = info[2] + 1
+
+    return False
+
+def actualizar_cadena(info, letra):
+    for i in range(len(info[0])):
+        if info[0][i] == letra:
+            info[1] = info[1][:(2 * i)] + letra + info[1][(2 * i + 1):]
 
 def cond(opcion):
                 if opcion == "no":
@@ -472,11 +497,15 @@ def update_ui():
         global photo
         photo = image_queue.get_nowait()     
         image_label.config(image = photo)
+        print("de la ventana")
+        print(root.winfo_reqwidth())
+        print(photo.width())
+        
+        image_label.grid(column=0, row=0, pady=20, padx=((800 - photo.width())/ 2))
 
 
 
     except queue.Empty: 
-        print("hola pe")
         pass
         
     root.after(100, update_ui)
