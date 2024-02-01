@@ -158,7 +158,7 @@ def execute_start_logic():
     texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
     mic_label.grid(column=0, row=2, pady=10)
-    nombre = "Jorge"
+    nombre = enviar_voz()
     mic_label.grid_forget()
     send_text_to_ui("Hola " + nombre)
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
@@ -175,7 +175,7 @@ def execute_start_logic():
     send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
-    respuesta = "juegos"
+    respuesta = enviar_voz()
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
@@ -639,7 +639,9 @@ def execute_start_logic():
         send_text_to_ui("1) Laberinto de instrucciones 2) Ahorcados")
         texto_a_audio("Por el momento tenemos 2 juegos bastante divertidos, ¿cual te gustaria probar?")
         
-        respuesta = "laberinto de instrucciones"
+        mic_label.grid(column=0, row=2, pady=10)
+        respuesta = enviar_voz()
+        mic_label.grid_forget();
 
         if respuesta == "laberinto de instrucciones":
 
