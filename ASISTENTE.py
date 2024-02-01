@@ -658,6 +658,8 @@ def execute_start_logic():
                 texto_a_audio("Bueno, ahora ¿cual te gustaria probar?")
 
         elif respuesta == "salir":
+            send_text_to_ui("Ha sido un gusto poder ayudarte, regresa pronto.")
+            texto_a_audio("Ha sido un gusto poder ayudarte, regresa pronto.")
             break
 
 def preguntas(i):    
