@@ -157,7 +157,7 @@ def execute_start_logic():
     send_text_to_ui("¿Comó te llamas?")
     texto_a_audio("¿Comó te llamas?")
     mic_label.grid(column=0, row=2, pady=10)
-    nombre = enviar_voz()
+    nombre = "Jorge"
     mic_label.grid_forget()
     send_text_to_ui("Hola " + nombre)
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
@@ -174,7 +174,7 @@ def execute_start_logic():
     send_text_to_ui("¿Qué opción eliges?")
 
     mic_label.grid(column=0, row=2, pady=10)  
-    respuesta = enviar_voz()
+    respuesta = "cuestionario"
     mic_label.grid_forget()
 
     if respuesta == "aprendizaje":
@@ -493,7 +493,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 01\nElige sabiamente...")
             texto_a_audio(datos['PE_1'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P1_RESPUESTA'], respuesta)
 
@@ -504,7 +504,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 02\nElige sabiamente...")
             texto_a_audio(datos['PE_2'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P2_RESPUESTA'], respuesta)
 
@@ -515,7 +515,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 03\nElige sabiamente...")
             texto_a_audio(datos['PE_3'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P3_RESPUESTA'], respuesta)
             
@@ -524,9 +524,9 @@ def execute_start_logic():
             photo = ImageTk.PhotoImage(image)
             image_queue.put(photo)
             send_text_to_ui("Pregunta 04\nElige sabiamente...")
-            texto_a_audio(datos['PE_4'], respuesta)
+            texto_a_audio(datos['PE_4'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P4_RESPUESTA'], respuesta)
 
@@ -537,7 +537,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 05\nElige sabiamente...")
             texto_a_audio(datos['PE_5'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P5_RESPUESTA'], respuesta)
 
@@ -548,7 +548,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 06\nElige sabiamente...")
             texto_a_audio(datos['PE_6'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P6_RESPUESTA'], respuesta)
 
@@ -559,7 +559,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 07\nElige sabiamente...")
             texto_a_audio(datos['PE_7'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P7_RESPUESTA'], respuesta)
 
@@ -570,7 +570,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 08\nElige sabiamente...")
             texto_a_audio(datos['PE_8'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P8_RESPUESTA'], respuesta)
 
@@ -581,7 +581,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 09\nElige sabiamente...")
             texto_a_audio(datos['PE_9'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P9_RESPUESTA'], respuesta)
 
@@ -592,7 +592,7 @@ def execute_start_logic():
             send_text_to_ui("Pregunta 10\nElige sabiamente...")
             texto_a_audio(datos['PE_10'])
 
-            respuesta = enviar_voz()
+            respuesta = "a"
 
             comp(datos['P10_RESPUESTA'], respuesta)
 
@@ -818,7 +818,7 @@ lbl_track=tk.Label(root, text=" ", font=("Arial", 13, "bold"))
 lbl_text.config(bg="#262626",
                 fg="#fefae4", # color mostaza
                 font=("Oswald", 20, "bold")) 
-lbl_text.grid(column=0, row=2)
+lbl_text.grid(column=0, row=1)
 
 # Run the main loop directly
 root.mainloop()
