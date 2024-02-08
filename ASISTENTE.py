@@ -266,7 +266,7 @@ def execute_start_logic():
                     texto_a_audio(datos['operadores'])
 
                 elif respuesta == "estructuras condicionales":
-                    image = Image.open("IMG/estructurasCoondicionales.png")
+                    image = Image.open("IMG/estructurasCondicionales.png")
                     image = image.resize((790, 450))
                     photo = ImageTk.PhotoImage(image)
                     send_text_to_ui("Estructuras condicionales")
